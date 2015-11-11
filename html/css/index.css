@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+/* nav */
+.navbox i:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+}
+
+.navbox a {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+    font-size: 1em;
+    color: #808080;
+}
+
+.navbox a:active {
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+
+.navbox i {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 5px;
+    border-radius: 40%;
+}
+
+/* listtit */
+.titbox {
+    position: relative;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 1.6px;
+    font-size: 1.33rem;
+    border-bottom: 1px solid #e6e6e6;
+    color: #34a853;
+}
+
+.icon-mrose {
+    background-color: #fecb2f;
+}
+
+.icon-fat {
+    background-color: #fd9e42;
+}
+
+.icon-near {
+    background-color: #67ccee;
+}
+
+.icon-prom {
+    background-color: #95dd5c;
+}
+
+.icon-mrose:before {
+    background-position: 0 0;
+}
+
+.icon-fat:before {
+    background-position: 0 -44px;
+}
+
+.icon-near:before {
+    background-position: 0 -88px;
+}
+
+.icon-prom:before {
+    height: 34px;
+    background-position: 2px -131px;
+}
+
+/* slider */
+.slide {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.slide img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.slide-list {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+}
+
+.slide-item {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-box-flex: 1;
+    box-flex: 1;
+    width: 1px;
+    overflow: hidden;
+}
+
+.slide-item a {
+    display: block;
+}
+
+.slide-indexs {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 10px;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.slide-indexs i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 50%;
+    margin: 0 4px;
+    opacity: .6;
+    filiter: alpha(opacity=60);
+}
+
+.slide-indexs i.active {
+    background-color: #000;
+}
+
+.slide-num {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, .5);
+    background-clip: padding-box;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-size: 1rem;
+    line-height: 20px;
+    padding: 0 10px;
+}

@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.agr-box {
+	font-size: 14px;
+	font-size: 1.17rem;
+	line-height: 1.8;
+}
+
+.agr-tit {
+	padding: 0 10px;
+	text-align: center;
+	font-size: 17px;
+	font-size: 1.42rem;
+	font-weight: 500;
+	line-height: 3;
+}
+
+.agr-p {
+	padding: 0 10px;
+	text-indent: 30px;
+}
+
+.agr-info {
+	padding: 0 10px 10px;
+}
+
+.agr-info dt {
+	padding-top: 30px;
+	font-weight: 500;
+}
+
+.agr-info dd {
+	text-indent: 30px;
+}
+
+.agr-info p {
+	text-indent: 0;
+}

@@ -1,0 +1,371 @@
+/* personal center */
+[class^="pcenter-icons-"] {
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../images/pcenter_icons.png) no-repeat;
+	background-size: 77.5px auto;
+}
+
+.pcenter-icons-man {
+	width: 13px;
+	height: 13px;
+	margin-left: 5px;
+}
+
+.pcenter-icons-woman {
+	margin-left: 5px;
+	width: 10px;
+	height: 16px;
+	background-position: -20px 0;
+}
+
+.pcenter-icons-edit {
+	width: 16px;
+	height: 18px;
+	background-position: 0 -19px;
+}
+
+.pcenter-icons-resume {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px 0;
+}
+
+.pcenter-icons-ptj {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -19px;
+}
+
+.pcenter-icons-ptj {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -19px;
+}
+
+.pcenter-icons-fav {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -38px;
+}
+
+.pcenter-icons-wallet {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px 0;
+}
+
+.pcenter-icons-recommend {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px -38px;
+}
+
+.pcenter-icons-aboutus {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px -19px;
+}
+
+.mod-com-list.mylist li:not(.mod-li-arr) {
+	padding-right: 0;
+}
+
+.pcenter-box .list-tit,
+.user-tell,
+.mylist li,
+.login-list li,
+.wallet-list li {
+	font-size: 14px;
+	font-size: 1.17rem;
+}
+
+.mylist  .mid-r.f-hint1 {
+	font-size: 16px;
+	font-size: 1.33rem;
+}
+
+.pcenter-box .mod-label {
+	color: #808080;
+}
+
+.user-imgbox {
+	display: block;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 1px solid #e6e6e6;
+}
+
+.user-imgbox img {
+	width: 100%;
+	max-width: 100%;
+}
+
+.mylist .mod-li-arr .mid-r {
+	right: 25px;
+}
+
+.mylist [class*="pcenter-icons-"] {
+	position: absolute;
+	top: 50%;
+	left: -30px;
+	margin-top: -8px;
+}
+
+.list-r-txt {
+	color: #bfbfbf;
+}
+
+.user-header-box,
+.user-header-icon {
+	width: 45px;
+	height: 45px;
+	overflow: hidden;
+}
+
+.user-header-icon {
+	border-radius: 50%;
+	background-color: #f2f2f2;
+}
+
+.user-header-icon-head {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: #d9d9d9;
+	margin: 10px auto 0;
+}
+
+.user-header-icon-arm {
+	display: block;
+	width: 16px;
+	height: 50px;
+	margin: 2px auto 0;
+	border: 6px solid #d9d9d9;
+	border-radius: 14px;
+}
+
+.checkbox-wrap {
+	margin-top: -8px;
+}
+
+.checkbox-wrap label {
+	margin-left: 30px;
+}
+
+.checkbox-wrap .checkbox {
+	margin: 0 0 0 4px;
+	vertical-align: middle;
+}
+
+.mylist  .mod-cont {
+	text-align: right;
+}
+
+.must:after {
+	content: "*";
+	display: inline-block;
+	vertical-align: top;
+	margin: -4px 0 0 4px;
+	color: #f24649;
+}
+
+.mylist .textarea {
+	display: block;
+	border: none;
+	padding: 0;
+	margin-right: 10px;
+	font-size: 14px;
+	font-size: 1.17rem;
+	background-color: transparent;
+}/* personal center */
+[class^="pcenter-icons-"] {
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../images/pcenter_icons.png) no-repeat;
+	background-size: 77.5px auto;
+}
+
+.pcenter-icons-man {
+	width: 13px;
+	height: 13px;
+	margin-left: 5px;
+}
+
+.pcenter-icons-woman {
+	margin-left: 5px;
+	width: 10px;
+	height: 16px;
+	background-position: -20px 0;
+}
+
+.pcenter-icons-edit {
+	width: 16px;
+	height: 18px;
+	background-position: 0 -19px;
+}
+
+.pcenter-icons-resume {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px 0;
+}
+
+.pcenter-icons-ptj {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -19px;
+}
+
+.pcenter-icons-ptj {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -19px;
+}
+
+.pcenter-icons-fav {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -35px -38px;
+}
+
+.pcenter-icons-wallet {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px 0;
+}
+
+.pcenter-icons-recommend {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px -38px;
+}
+
+.pcenter-icons-aboutus {
+	width: 17.5px;
+	height: 17.5px;
+	background-position: -60px -19px;
+}
+
+.mod-com-list.mylist li:not(.mod-li-arr) {
+	padding-right: 0;
+}
+
+.pcenter-box .list-tit,
+.user-tell,
+.mylist li,
+.login-list li,
+.wallet-list li {
+	font-size: 14px;
+	font-size: 1.17rem;
+}
+
+.mylist  .mid-r.f-hint1 {
+	font-size: 16px;
+	font-size: 1.33rem;
+}
+
+.pcenter-box .mod-label {
+	color: #808080;
+}
+
+.user-imgbox {
+	display: block;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 1px solid #e6e6e6;
+}
+
+.user-imgbox img {
+	width: 100%;
+	max-width: 100%;
+}
+
+.mylist .mod-li-arr .mid-r {
+	right: 25px;
+}
+
+.mylist [class*="pcenter-icons-"] {
+	position: absolute;
+	top: 50%;
+	left: -30px;
+	margin-top: -8px;
+}
+
+.list-r-txt {
+	color: #bfbfbf;
+}
+
+.user-header-box,
+.user-header-icon {
+	width: 45px;
+	height: 45px;
+	overflow: hidden;
+}
+
+.user-header-icon {
+	border-radius: 50%;
+	background-color: #f2f2f2;
+}
+
+.user-header-icon-head {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: #d9d9d9;
+	margin: 10px auto 0;
+}
+
+.user-header-icon-arm {
+	display: block;
+	width: 16px;
+	height: 50px;
+	margin: 2px auto 0;
+	border: 6px solid #d9d9d9;
+	border-radius: 14px;
+}
+
+.checkbox-wrap {
+	margin-top: -8px;
+}
+
+.checkbox-wrap label {
+	margin-left: 30px;
+}
+
+.checkbox-wrap .checkbox {
+	margin: 0 0 0 4px;
+	vertical-align: middle;
+}
+
+.mylist  .mod-cont {
+	text-align: right;
+}
+
+.must:after {
+	content: "*";
+	display: inline-block;
+	vertical-align: top;
+	margin: -4px 0 0 4px;
+	color: #f24649;
+}
+
+.mylist .textarea {
+	display: block;
+	border: none;
+	padding: 0;
+	margin-right: 10px;
+	font-size: 14px;
+	font-size: 1.17rem;
+	background-color: transparent;
+}
+
+.listHrefBox {
+	display: block;
+}

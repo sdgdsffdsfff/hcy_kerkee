@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<title>个人中心</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/account.css">
+</head>
+<body>
+	<div class="pagewrap">
+	    <!-- wrap start -->
+	    <article class="pcenter-box mod-margin-box minh100">
+	    	<section class="loading-pop active">
+	            <div class="spinner">
+	                <div class="spinny"></div>
+	            </div>
+	        </section>
+			<div class="userInfoBox">
+				<script type="text/html" id="userInfo">
+					<section class=" sub-header mod-flex mod-single-margin-unit p10 js-touch-state">
+						<a href="ganji://resume" class="user-imgbox">
+						  <img src="{{logo}}">
+						</a>
+						<div class="mod-cont">
+						  <h3 class="list-tit">
+						    {{nick_name}}
+						    {{if gender==1}} 
+						  		<i class="pcenter-icons-man"></i>
+						  	{{else if gender==2}}
+						  		<i class="pcenter-icons-woman"></i>
+						  	{{/if}}
+						  </h3>
+
+						  <div class="user-tell">{{mobile}}</div>
+						  <!--tell-->
+
+						  <a href="ganji://resume" class="mid-r">
+						    <i class="pcenter-icons-edit"></i>
+						  </a>
+						</div>
+					</section>
+
+					<ul class="mod-paddingleft-list mod-margin-unit  mod-has-r mylist ">
+						<li class="mod-li-arr js-touch-state">
+							<a class="listHrefBox" href="ganji://resume">
+						  		<i class="pcenter-icons-resume"></i>
+							    <h2 class="mod-label">我的简历</h2>
+							    <i class="mod-arr"></i>
+							</a>
+						</li>
+						<li class="mod-li-arr js-touch-state">
+							<a class="listHrefBox" href="ganji://applylist">
+							  	<i class="pcenter-icons-ptj"></i>
+								<h2 class="mod-label">我的兼职</h2>
+								<i class="mod-arr"></i>
+							</a>
+						</li>
+						<!-- <li class="mod-li-arr js-touch-state">
+							<a class="listHrefBox" href="javascript">
+								<i class="pcenter-icons-fav"></i>
+								<h2 class="mod-label">收藏的职位</h2>
+								<i class="mod-arr"></i>
+							</a>
+						</li> -->
+					</ul>
+
+					<ul class="mod-paddingleft-list mod-margin-unit  mod-has-r mylist">
+						<li class="mod-li-arr js-touch-state">
+							<a class="listHrefBox" href="ganji://userwallet">
+								<i class="pcenter-icons-wallet"></i>
+								<h2 class="mod-label">我的钱包</h2>
+								<div class="mid-r f-hint1">{{balance}}</div>
+								<i class="mod-arr"></i>
+							</a>
+						</li>
+						<li class="mod-li-arr js-touch-state">
+							<a class="listHrefBox" href="ganji://invitecode">
+								<i class="pcenter-icons-recommend"></i>
+								<h2 class="mod-label">推荐有奖</h2>
+								<div class="mid-r list-r-txt">成功推荐有奖金</div>
+								<i class="mod-arr"></i>
+							</a>
+						</li>
+					</ul>
+
+					<ul class="mod-paddingleft-list mod-margin-unit  mylist phoneCall">
+						<li>
+						  <i class="pcenter-icons-aboutus"></i>
+						  <h2 class="mod-label">关于斗米兼职</h2>
+						  <div class="mid-r">4007337700</div>
+						</li>
+					</ul>
+				</script>
+			</div>
+
+			<div class="btnbox displayNone">
+				<button type="button" class="btn logoutBtn js-touch-state">退出登录</button>
+			</div>
+
+	    </article>
+	    <!-- wrap end --> 
+    </div>
+    <!--removeIf(production)-->
+	<script type="text/javascript" src="../../vendor/core/SHFLoader.js" data-main="account.js"></script> 
+	<!--endRemoveIf(production)-->
+
+	<!-- include:js(account.js) -->
+</body>
+</html>

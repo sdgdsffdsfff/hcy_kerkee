@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <title>兼职-首页</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/list.css">
+    <link rel="stylesheet" href="../../css/index.css">
+</head>
+<body>
+
+<!-- wrap start -->
+<article class="mod-margin-box">
+
+<!--slider-->
+<div class="slide" data-widget="com/mobile/widget/responsiveBanner.js" data-interval="3000">
+    <script type="text/html" id="focus-img-tpl">
+        <ul class="slide-list" data-role="list">
+            {{each focus_imgs as value i}}
+            <li class="slide-item" data-role="item">
+                <a href="{{value.url}}">
+                    <img src="{{value.image}}">
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+        <div class="slide-indexs" id="slideIndexs"> 
+            {{each focus_imgs as value i}}
+                {{if i == 0}}
+                <i data-slide-to="{{i}}" class="active"></i>
+                {{else}}
+                <i data-slide-to="{{i}}"></i>
+                {{/if}}
+            {{/each}}
+        </div>
+    </script>
+</div>
+
+<!--slider end-->
+
+<nav class="navbox mod-margin-unit mod-flex  ani-nav">
+<script type="text/html" id="caselistwrap">
+    {{each case_list as value i}}
+    <a href="{{value.url}}" class="mrose mod-cont">
+        {{if value.id == 1}}
+        <i class="icon-mrose"></i>
+        {{/if}}
+        {{if value.id == 2}}
+        <i class="icon-fat"></i>
+        {{/if}}
+        {{if value.id == 3}}
+        <i class="icon-near"></i>
+        {{/if}}
+        {{if value.id == 4}}
+        <i class="icon-prom"></i>
+        {{/if}}
+        <strong>{{value.title}}</strong>
+    </a>
+    {{/each}}
+</script>
+</nav>
+
+<section class="mod-margin-unit mod-last-unit">
+<h2 class="titbox">
+  <i class="icons-fond"></i>
+  猜你喜欢
+  <a href="javascript: void(0)" class="more">更多</a>
+</h2>
+<ul class="mod-label-listwrap mod-padding-list">
+    <script type="text/html" id="content-list-tpl">
+        {{each post_list as value i}}
+            <li>
+                <a href="javascript: void(0)" class="mod-flex">
+                    <div class="mod-imgbox">
+                        <img src="{{value.image}}" class="mod-img">
+                        {{if value.apply_status == 1}}
+                            <p class="icons-bg">
+                                <i>{{value.apply_status_str}}</i>
+                            </p>
+                        {{else}}
+                            <p class="icons-bg full">
+                                <i>{{value.apply_status_str}}</i>
+                            </p>
+                        {{/if}}
+                    </div>
+                    <div class="mod-cont">
+                        <h3 class="list-tit"> <i class="tag-hot">{{if value.ad_types == 1}}热{{/if}}</i>
+                        {{value.title}}
+                        </h3>
+
+                        <address class="addr">
+                        <i class="icons-site"></i>
+                        {{value.post_area}}
+                        <span class="distance">{{value.distance_long}}</span>
+                        </address>
+                        <!--addr-->
+
+                        <div class="taglist">
+                        <i class="icons-prom"></i>
+                            {{each value.post_tags as tagval}}
+                            <i class="tag-c">{{tagval}}</i>
+                            {{/each}}
+                        </div>
+                        <!--tags-->
+
+                        <div class="list-r">
+                        <i class="salary"><em class="price">{{value.salary}}</em>
+                        /{{value.salary_type_str}}</i> 
+                        <time class="date">{{value.working_hours}}</time>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        {{/each}}
+    </script>
+</ul>
+<a href="javascript: void(0)" class="list-finished  btm-more">查看更多职位</a>
+</section>
+
+</article>
+<!-- wrap end -->
+
+
+<!--removeIf(production)-->
+<script type="text/javascript" src="../../vendor/core/SHFLoader.js" data-main="index.js"></script>
+<!--endRemoveIf(production)-->
+
+<!-- include:js(index.js) -->
+</body>
+</html>

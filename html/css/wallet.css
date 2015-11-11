@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+/* wallet */
+.wallet-box .pubtime {
+	margin-top: 5px;
+}
+
+.balance-box {
+	padding: 30px 10px 10px;
+	text-align: center;
+	font-size: 18px;
+	font-size: 1.5rem;
+	background-color: #f6b804;
+	color: #fff;
+}
+
+.balance {
+	font-weight: 500;
+	font-size: 45px;
+	font-size: 3.75rem;
+	line-height: 1.2;
+}
+
+.wallet-list li {
+	width: 100%;
+}
+
+.wallet-list .mod-label {
+	min-width: 0;
+}
+
+.wallet-list .mod-li-arr {
+	padding: 15px 0;
+}
+
+.wallet-list .input.mod-cont {
+	padding-left: 0;
+	outline: none;
+}
+
+.wallet-state-list .list-tit {
+	padding-right: 0;
+}
+
+.wallet-state-list  .f-bigbase {
+	margin-bottom: 2px;
+}
+
+.wallet-state-list  .f-grey {
+	line-height: 1.3;
+}
+
+.wallet-list-right {
+	position: relative;
+	min-width: 100px;
+	min-height: 70px;
+	margin-right: 10px;
+	text-align: right;
+	color: #bfbfbf;
+}
+
+.wallet-state {
+	/*position: absolute;
+	bottom: 0;
+	right: 0;
+	min-width: 100%;*/
+}
+
+.f-time {
+	line-height: 2;
+	font-size: 14px;
+	font-size: 1.17rem;
+}
+
+.f-big {
+	white-space: nowrap;
+	line-height: 1;
+	font-size: 25px;
+	font-size: 2.08rem;
+}
+
+.f-big i {
+	font-size: 25px;
+	font-size: 2.33rem;
+	font-family: Arial;
+}
+
+.wallet-state3 {
+	color: #34a853;
+}
+
+.wallet-state4 {
+	color: #ea4335;
+}
+
+.wallet-box .list-tit {
+	padding-right: 80px;
+}
+.surebtn {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}

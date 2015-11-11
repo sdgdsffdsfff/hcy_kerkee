@@ -1,0 +1,193 @@
+@charset "utf-8";
+
+/* detail */
+.com-tit-box {
+	position: relative;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.com-tit {
+	margin-bottom: 5px;
+	font: 500 1.4em/1.5 "microsoft yahei";
+	color: #282828;
+}
+
+.more {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	padding-right: 10px;
+	margin-top: -9px;
+	font-weight: normal;
+	font-size: 13px;
+	font-size: 1.08rem;
+	color: #fbbc05;
+}
+
+.list-tit {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 24px;
+	font-weight: 500;
+	font-size: 16px;
+	font-size: 1.33rem;
+	color: #404040;
+}
+
+.addr,
+.taglist,
+.pubtime {
+	margin: 6px 65px 0 0;
+	line-height: 1;
+	font-weight: normal;
+	font-size: 12px;
+	font-size: 1rem;
+	color: #808080;
+}
+
+[class^="tag-"] {
+	display: inline-block;
+	padding: 0 4px;
+	vertical-align: middle;
+	font-weight: normal;
+	font-size: 12px;
+	font-size: 1rem;
+	line-height: 16px;
+	margin-right: 4px;
+	white-space: nowrap;
+	background-color: #f2f2f2;
+	border-radius: 2px;
+}
+
+.list-r {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	text-align: right;
+}
+
+a.mod-flex .list-r {
+	bottom: 0;
+}
+
+.salary,
+.date {
+	display: block;
+	font-weight: normal;
+	font-size: 12px;
+	font-size: 1rem;
+	color: #888;
+}
+
+.salary {
+	line-height: 22px;
+}
+
+.tag-recommend,
+.tag-hot {
+	float: right;
+	padding: 0 2px;
+	margin-top: 4px;
+	margin-left: 2px;
+	color: #fff;
+}
+
+
+.tag-recommend {
+	background-color: #64e0ac;
+}
+
+.tag-hot {
+	background-color: #fc7976;
+}
+
+.price {
+	margin-right: 1px;
+	vertical-align: bottom;
+	letter-spacing: -1px;
+	line-height: inherit;
+	font-weight: 500;
+	font-size: 20px;
+	font-size: 1.67rem;
+	font-family: Arial;
+	color: #ea4335;
+}
+
+.icons-site {
+	width: 11px;
+	height: 12px;
+	margin-right: 5px;
+	vertical-align: bottom;
+	background-position: -60px -64px;
+}
+
+.icons-prom {
+	width: 62px;
+	height: 16px;
+	margin-right: 4px;
+	background-position: -60px 0;
+}
+
+.icons-clock {
+	width: 12px;
+	height: 12px;
+	margin-right: 5px;
+	background-position: -100px -48px;
+}
+
+.icons-point {
+	width: 12px;
+	height: 16px;
+	vertical-align: middle;
+	margin-right: 5px;
+	background-position: -100px -63px;
+}
+
+.tagbox {
+	margin-top: 6px;
+}
+
+.assure-info {
+	padding: 4px 0;
+}
+
+.assure-info em {
+	vertical-align: middle;
+	font-size: 14px;
+	font-size: 1.17rem;
+	letter-spacing: -.5px;
+	color: #34a853;
+}
+
+.assure-info .icons-prom {
+	vertical-align: middle;
+}
+
+.job-info .mod-info dt {
+	width: 80px;
+	white-space: nowrap;
+}
+
+.job-info .mod-info dd {
+	margin-left: 80px;
+}
+
+.site-pointer {
+	margin-left: 5px;
+	color: #fbbc05;
+}
+
+.complain-box {
+	text-align: right;
+}
+
+.com-tit-box {
+	border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABlBMVEX////m5ua54GxLAAAAAXRSTlMAQObYZgAAAA5JREFUeF5j+MHQAYY/ABGyA4kJspHpAAAAAElFTkSuQmCC) 2 stretch stretch
+}

@@ -1,0 +1,57 @@
+{
+  "name": "kerkee",
+  "project": "kerkee",
+  "version": "1.1.0",
+  "host": "http://10.0.69.79",
+  "path": "/home/huangjian/workstation/bridge/newssdk/bin",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-cache": "^0.2.4",
+    "gulp-clean": "^0.2.4",
+    "gulp-concat": "^2.4.3",
+    "gulp-data": "^1.2.0",
+    "gulp-file-copy": "0.0.1",
+    "gulp-file-include": "^0.13.7",
+    "gulp-html-replace": "^1.4.3",
+    "gulp-htmlmin": "^1.1.0",
+    "gulp-imagemin": "^2.1.0",
+    "gulp-include-source": "0.0.5",
+    "gulp-jshint": "^1.11.2",
+    "gulp-less": "^1.0.1",
+    "gulp-livereload": "^3.5.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-md5-plus": "^0.1.6",
+    "gulp-minify-css": "^0.4.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-remove-code": "^1.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-ruby-sass": "^1.0.0-alpha.3",
+    "gulp-shell": "^0.4.2",
+    "gulp-sourcemaps": "^1.3.0",
+    "gulp-template": "^2.1.0",
+    "gulp-tmod": "^0.1.2",
+    "gulp-uglify": "^0.2.1",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.0",
+    "gulp-yuidoc": "^0.1.2",
+    "gulp-zip": "^3.0.2",
+    "imagemin-jpegtran": "^4.0.0",
+    "imagemin-optipng": "^4.2.0",
+    "log4js": "^0.6.26",
+    "path": "^0.11.11",
+    "through2": "^2.0.0"
+  },
+  "log4js": {
+    "appenders": [
+      {
+        "type": "console",
+        "pattern": "yyyy-MM-dd",
+        "alwaysIncludePattern": true,
+        "pollInterval": 1
+      }
+    ],
+    "replaceConsole": true
+  }
+}
