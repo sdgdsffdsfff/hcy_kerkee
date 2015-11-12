@@ -1,0 +1,9 @@
+# 忽略项目文件,
+less
+coffee
+.idea
+target
+bin
+sendInfo.py
+node_modules
+.DS_Store
