@@ -325,6 +325,12 @@
     padding: 6px;
     overflow: hidden;
 }
+.category a{
+    padding: 0;
+}
+.js-category .js-category-a{
+    padding: 6px;
+}
 
 .category .touch,
 .category a:active,

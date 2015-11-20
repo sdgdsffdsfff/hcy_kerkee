@@ -7,6 +7,8 @@ requirejs.config({
 
     paths: {
         api:"../vendor/api",
+        when:"../vendor/lib/when",
+        fastclick:"../vendor/lib/fastclick",
         bridgeLib: "../bridgeLib",
         zepto:"../vendor/lib/zepto.min",
         lazyload:"../vendor/lib/jquery.lazyload",
@@ -42,11 +44,16 @@ requirejs.config({
         lazyload:{
             deps:['zepto'],
             exports:"lazyload"
+        },
+
+        when:{
+            deps:['zepto']
         }
+
     }
 });
 
 //入口方法初始化
-require(["wallet/walletDo"],function(walletDo){
-    walletDo.init();
+require(["city/cityDo"],function(cityDo){
+    cityDo.init();
 });

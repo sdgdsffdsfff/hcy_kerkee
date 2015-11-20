@@ -7,6 +7,7 @@ requirejs.config({
 
     paths: {
         api:"../vendor/api",
+        when:"../vendor/lib/when",
         bridgeLib: "../bridgeLib",
         zepto:"../vendor/lib/zepto.min",
         lazyload:"../vendor/lib/jquery.lazyload",
@@ -42,6 +43,10 @@ requirejs.config({
         lazyload:{
             deps:['zepto'],
             exports:"lazyload"
+        },
+
+        when:{
+            deps:['zepto']
         }
     }
 });

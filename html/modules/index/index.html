@@ -17,8 +17,14 @@
 </head>
 <body>
 
+<section class="loading-pop active">
+    <div class="spinner">
+        <div class="spinny"></div>
+    </div>
+</section>
+
 <!-- wrap start -->
-<article class="mod-margin-box">
+<article class="mod-margin-box js-body">
 
 <!--slider-->
 <div class="slide" data-widget="com/mobile/widget/responsiveBanner.js" data-interval="3000">
@@ -26,7 +32,7 @@
         <ul class="slide-list" data-role="list">
             {{each focus_imgs as value i}}
             <li class="slide-item" data-role="item">
-                <a href="{{value.url}}">
+                <a class="js-slider-img" data-imgid="{{value.id}}" href="doumi://browser/{{value.url}}">
                     <img src="{{value.image}}">
                 </a>
             </li>
@@ -49,21 +55,21 @@
 <nav class="navbox mod-margin-unit mod-flex  ani-nav">
 <script type="text/html" id="caselistwrap">
     {{each case_list as value i}}
-    <a href="{{value.url}}" class="mrose mod-cont">
-        {{if value.id == 1}}
-        <i class="icon-mrose"></i>
+        {{if value.id != 1}}
+            <a href="doumi://joblist?{{value.param}}" class="mrose mod-cont">
+                
+                {{if value.id == 2}}
+                <i class="icon-fat"></i>
+                {{/if}}
+                {{if value.id == 3}}
+                <i class="icon-near"></i>
+                {{/if}}
+                {{if value.id == 4}}
+                <i class="icon-prom"></i>
+                {{/if}}
+                <strong>{{value.title}}</strong>
+            </a>
         {{/if}}
-        {{if value.id == 2}}
-        <i class="icon-fat"></i>
-        {{/if}}
-        {{if value.id == 3}}
-        <i class="icon-near"></i>
-        {{/if}}
-        {{if value.id == 4}}
-        <i class="icon-prom"></i>
-        {{/if}}
-        <strong>{{value.title}}</strong>
-    </a>
     {{/each}}
 </script>
 </nav>
@@ -72,15 +78,15 @@
 <h2 class="titbox">
   <i class="icons-fond"></i>
   猜你喜欢
-  <a href="javascript: void(0)" class="more">更多</a>
+  <a href="doumi://joblist?order=0" class="more">更多</a>
 </h2>
 <ul class="mod-label-listwrap mod-padding-list">
     <script type="text/html" id="content-list-tpl">
         {{each post_list as value i}}
-            <li>
-                <a href="javascript: void(0)" class="mod-flex">
+            <li class="js-item">
+                <a href="doumi://jobdetail?job_id={{value.id}}" class="mod-flex">
                     <div class="mod-imgbox">
-                        <img src="{{value.image}}" class="mod-img">
+                        <img src="{{value.image}}" alt="logo" class="mod-img">
                         {{if value.apply_status == 1}}
                             <p class="icons-bg">
                                 <i>{{value.apply_status_str}}</i>
@@ -122,7 +128,7 @@
         {{/each}}
     </script>
 </ul>
-<a href="javascript: void(0)" class="list-finished  btm-more">查看更多职位</a>
+<a href="doumi://joblist?order=0" class="list-finished  btm-more">查看更多职位</a>
 </section>
 
 </article>

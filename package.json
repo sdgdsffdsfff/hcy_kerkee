@@ -53,5 +53,8 @@
       }
     ],
     "replaceConsole": true
+  },
+  "dependencies": {
+    "q": "^1.4.1"
   }
 }

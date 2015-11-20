@@ -16,6 +16,7 @@ var shell  = require('gulp-shell');
 var path     = require("path");
 var through  = require("through2");
 var util     = require("gulp-util");
+var Q = require('q');
 var debug = true;
 
 Date.prototype.format = function(format){
@@ -461,6 +462,7 @@ gulp.task("copyall", ["copylib", "cleanTarget"], function () {
 gulp.task("copylib", function () {
     return gulp.src(devPath + "/bridgeLib.js").pipe(gulp.dest(devPath + "/attach/js"));
 });
+
 /*
  * @desc 将缓存文件删除
  * @src  tempPath
@@ -541,7 +543,6 @@ gulp.task("parseTemp", function () {
 gulp.task('umin', ["jsmin", "cssmin"], function () {
     console.log("umin ok");
 });
-
 
 /*
  * @desc 将所有资源项目打包压缩并加上时间戳
@@ -639,4 +640,107 @@ gulp.task('amdmod', function () {
         }
     });
     console.log(files);
+});
+
+
+
+// =====================================================================================
+
+/*
+ * @desc 将所有资源项目用r.js进行压缩合并
+ * @src  devPath
+ * @deps copylib cleanTarget
+ * @dest destPath
+ */
+gulp.task('rjsCompression', ["copylib","cleanTarget"], function () {
+    var deferred = Q.defer();
+
+    var spawn = require('child_process').spawn;
+    var run = spawn('sh', ['-m', devPath + '/build/rjs.sh']);
+    var start = +new Date();
+    run.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    run.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    run.on('exit', function (code) {
+        var end = +new Date();
+        console.log("total:" + (end - start).toString() + "ms");
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+});
+/*
+ * @desc  css,js引入资源自动嵌入（需要是真实存在的文件资源）
+ * @deps  rjsCompression
+ * @src   devPath/*.html
+ * @dest  tempPath
+ * @eg    <!--include:js(js/app/media.js)--> / <!-- include:css(css/allmin.css) -->
+ */
+gulp.task("contain", ["rjsCompression"], function () {
+    return gulp.src(devPath + '/modules/**/*.html')
+        .pipe(plugins.includeSource())
+        .pipe(gulp.dest(tempPath));
+});
+/*
+ * @desc 将所有资源项目中的block删除
+ * @src  tempPath
+ * @deps none
+ * @dest tempPath
+ * @demo<!--removeIf(production)--><!--endRemoveIf(production)-->
+ */
+gulp.task('remove', ["contain"], function () {
+    return gulp.src(tempPath + '/**/*.html')
+        .pipe(plugins.removeCode({production: true}))
+        .pipe(gulp.dest(tempPath))
+});
+/*
+ * @desc 使用includeSource插件替换代码
+ * @src  tempPath
+ * @deps remove
+ * @dest destPath
+ */
+gulp.task('replace', ["remove"], function () {
+    return gulp.src(tempPath + '/**/*.html')
+        .pipe(gulp.dest(destPath + "/modules"))
+        .pipe(plugins.notify({message: 'rmin project complete'}));
+
+});
+/*
+ * @desc 将缓存文件删除
+ * @src  tempPath destPath
+ * @deps replace
+ * @dest destPath
+ */
+gulp.task('cleanTempDir', ["replace"], function () {
+    return gulp.src([tempPath, destPath + "/*.txt", destPath + "/less", destPath + "/tpl", destPath + "/tmod", destPath + "/vendor/lib/underscore.js", destPath + "/build", basePath + "/bin", destPath + "/modules/liveonline"])
+        .pipe(plugins.clean());
+});
+/*
+ * @desc 将所有资源项目打包压缩并加上时间戳
+ * @src  devPath destPath
+ * @deps cleanCss,cleanScript
+ * @dest basePath/bin
+ */
+gulp.task('compression', ["cleanTempDir"], function () {
+    var timesup=new Date().format("MMddhhmmss");
+
+    gulp.src([destPath + '/**/*'])
+        .pipe(plugins.zip("html_"+timesup+".zip"))
+        .pipe(gulp.dest(basePath + "/bin"))
+        .pipe(plugins.notify({message: 'coprass dev complete'}));
+
+    return gulp.src([devPath + '/**/*'])
+        .pipe(plugins.zip("dev_"+timesup+".zip"))
+        .pipe(gulp.dest(basePath + "/bin"))
+        .pipe(plugins.notify({message: 'coprass dest complete'}));
+});
+
+/*
+ * @desc 项目构建
+ */
+gulp.task('build', ["compression"], function () {
+    console.log("build ok");
 });

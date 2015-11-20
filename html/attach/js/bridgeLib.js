@@ -432,7 +432,7 @@
 	global.jsBridgeClient = jsBridgeClient;
 	//global.open = windowOpen;
 	//global.console.log = ApiBridge.log;
-	global.XMLHttpRequest = _XMLHttpRequest;
+	// global.XMLHttpRequest = _XMLHttpRequest;
 
 	jsBridgeClient.register = function (_window)
 	{

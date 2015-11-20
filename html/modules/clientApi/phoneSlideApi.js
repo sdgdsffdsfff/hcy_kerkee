@@ -29,11 +29,6 @@ define(["zepto"], function ($) {
 
         $.extend(this.settings, opations);
 
-        this.$wrap = $(this.settings.wrapSelector);
-        this.$itemBox = this.$wrap.find('ul');
-        // console.log(this.$wrap);
-        this.$items = this.$wrap.find('ul li');
-
         this._cloneDom();
 
         this.clientWidth = document.documentElement.clientWidth;
@@ -52,6 +47,7 @@ define(["zepto"], function ($) {
         this.endPageX = 0;
         this.endPageY = 0;
         this.timer = null;
+        this.timeoutTimer = null;
         this.onlyOne = this.$items.length == 2;
 
         this._init();
@@ -114,6 +110,21 @@ define(["zepto"], function ($) {
         },
 
         /*
+         * setToSlideStart 滚动到第一个
+         * @method setToSlideStart
+         * @private
+         * @param {Null}
+         * @return {Null}
+         * @example
+         *      this.setToSlideStart();
+         * @since 1.0.0
+         */
+        setToSlideStart : function(){
+            this.temCur = this.firstNum;
+            this._toDoSlide();
+        },
+
+        /*
          * touchstart 事件函数
          * @method _start
          * @private
@@ -124,6 +135,8 @@ define(["zepto"], function ($) {
          * @since 1.0.0
          */
         _start : function(event){
+            this.distance = 0;
+
             this.startPageX = event.targetTouches[0].pageX;
             this.startPageY = event.targetTouches[0].pageY;
             this._opaTransition('0s');
@@ -170,7 +183,7 @@ define(["zepto"], function ($) {
             
             this.startPageX = 0;
             this.startPageY = 0;
-
+            
             if(this.distance > this.slideMinDistance){
                 if(this.direction == 'right'){
                     this.temCur--;
@@ -232,7 +245,8 @@ define(["zepto"], function ($) {
                 "transform": "translateX(" + diff + "px)"
             });
             if(fn){
-                setTimeout($.proxy(fn, this), 300);
+                clearTimeout(this.timeoutTimer);
+                this.timeoutTimer = setTimeout($.proxy(fn, this), 300);
             }
             
         },
@@ -293,8 +307,11 @@ define(["zepto"], function ($) {
             if(!config.autoLoop) return;
             var config = this.settings;
             var self = this;
+
+            this._closeAutoLoop();
             
             this.timer = setInterval(function(){
+                
                 self._opaTransition('0.3s');
                 self.temCur++;
 
@@ -327,6 +344,9 @@ define(["zepto"], function ($) {
          * @since 1.0.0
          */
         _cloneDom : function(){
+            this.$wrap = $(this.settings.wrapSelector);
+            this.$itemBox = this.$wrap.find('ul');
+            this.$items = this.$wrap.find('ul li');
             this.$items.clone(true).appendTo(this.$itemBox);
 
             this.$items = this.$wrap.find('ul li');

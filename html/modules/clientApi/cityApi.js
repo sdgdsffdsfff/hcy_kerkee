@@ -12,12 +12,12 @@
  * @public
  */
 
-define(["bridgeLib", "api/helper/util"], function (bridgeLib, util) {
+define(["bridgeLib", "clientApi/baseApi"], function (bridgeLib, base) {
 
     var CityApi = (function () {
 
         //构建一个DetailApi类,继承自基础类
-        util.Klass().sub(CityApi);
+        base.sub(CityApi);
 
         //构造函数
         function CityApi() {
@@ -68,39 +68,56 @@ define(["bridgeLib", "api/helper/util"], function (bridgeLib, util) {
 
         CityApi.include({
 
-            /*
-             * 获取详情页数据
-             * @method getDetailData
+            /**
+             * 获取定位城市
+             * @method getPosition
              * @public
              * @param {Function} callBack 回调函数
-             * @param {String} string jobId
              * @return {Object}
+             * {info: "http://api.k.sohu.com/"}
              * @example
-             *      detailApi.getDetailData(function(data){
-             *          console.log(data);
-             * 	    });
+             *        clientInfo.getPosition(function(posCity){
+             *          console.log(posCity);
+             *      }
              * @since 1.0.0
              */
-             
-            getCurCity: function(id,callBack){
+            getPosition: function (callBack) {
                 this.sendData({
-                    method: "getDetailData",
+                    method: "getPosition",
                     param: {
-                        "jobId": id
+                        "info": "getPosition"
                     },
                     callBack: callBack
                 });
+            },
+
+            /**
+             * 切换城市，向客户端发送请求
+             * @method changeCity
+             * @public
+             * @param {Object} param 给客户端发送的参数
+             * @return {Null}
+             * @example
+             *        CityApi.changeCity()
+             * @since 1.0.0
+             */
+            changeCity : function (params) {
+                this.sendData({
+                    method: "changeCity",
+                    param: params
+                });
             }
+            
         });
         return CityApi;
     })();
 
     return new CityApi({
-        name: "kerkee detailApi",
+        name: "kerkee cityApi",
         author: "zihong",
         version: "1.0",
         jsbc: jsBridgeClient,
-        nativeCls: "detailModules"
+        nativeCls: "cityModules"
     });
 
 });

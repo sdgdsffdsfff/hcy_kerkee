@@ -1,6 +1,6 @@
 ### 这是一个kerkee V1.0 的javascript前端项目模板 ###
 
-### 本工程提供一个项目模板，可减轻开发环境搭建工作前端模块功能划分。###
+### 本工程提供一个项目模板，可减轻开发环境搭建工作和新闻客户端的前端模块功能划分。###
 
 #### 该模块包含如下内容：####
 >1. 使用zepto underscore jquery atrtemplate等框架
@@ -70,6 +70,20 @@
 ~~~
 
 ## 项目构建 ##
+
+gulp build
+
+或下面三个命令分别执行
+
 step 1. sh gulp.sh rjs (进行amd模块合并)
 step 2. sh gulp.sh rmin (进行html模板标签替换)
 step 3. sh gulp.sh zip  (进行打包并加上时间戳)
+
+## newsType和templateType对应关系 ##
+http://smc.sohuno.com/wiki/pages/viewpage.action?pageId=8030444
+
+## 搜狐视频播放器SDK ##
+http://t.m.tv.sohu.com/mb/foxplayer/playerApi/playerApi.html
+
+## js和native通信接口文档 ##
+http://10.0.119.144/h5/shfdoc/output/index.html

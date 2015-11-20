@@ -63,6 +63,7 @@
         lazyload:"../vendor/lib/jquery.lazyload",
         template: '../vendor/lib/template',
         when: '../vendor/lib/when',
+        orgwhen: '../vendor/lib/orgwhen',
         almond:"../vendor/plugin/almond",
         domReady: '../vendor/plugin/domReady',
         text: '../vendor/plugin/require.text',

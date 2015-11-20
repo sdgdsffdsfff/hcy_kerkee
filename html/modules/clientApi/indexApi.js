@@ -1,7 +1,7 @@
 /**
  * index相关接口
  * @class IndexApi
- * @extends Klass
+ * @extends BaseApi
  * @constructor
  * @module modules
  * @example
@@ -12,12 +12,12 @@
  * @public
  */
 
-define(["bridgeLib", "api/helper/util"], function (bridgeLib, util) {
+define(["bridgeLib", "clientApi/baseApi"], function (bridgeLib, base) {
 
     var IndexApi = (function () {
 
-        //构建一个ListApi类,继承自基础类
-        util.Klass().sub(IndexApi);
+        //构建一个IndexApi类,继承自baseApi基础类
+        base.sub(IndexApi);
 
         //构造函数
         function IndexApi() {
@@ -67,29 +67,7 @@ define(["bridgeLib", "api/helper/util"], function (bridgeLib, util) {
         }
 
         IndexApi.include({
-
-            /**
-             * 去客户端请求list列表页参数
-             * @method getOptions
-             * @public
-             * @param {Function} callBack 回调函数
-             * @return {Object}
-             * @example
-             *      listApi.getOptions(function(data){
-             *          console.log(data);
-             * 	    });
-             * @since 1.0.0
-             */
-            getOptions: function (callBack) {
-                this.sendData({
-                    method: "getOptions",
-                    param: {
-                        "info": "getOptions"
-                    },
-                    callBack: callBack
-                });
-            }
-
+            
 
         });
         return IndexApi;
