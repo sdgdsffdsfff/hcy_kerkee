@@ -12,7 +12,7 @@
  * @public
  */
 
-define(["bridgeLib", "clientApi/baseApi"], function (bridgeLib, base) {
+define(["clientApi/baseApi"], function (base) {
 
     var IndexApi = (function () {
 
@@ -64,6 +64,7 @@ define(["bridgeLib", "clientApi/baseApi"], function (bridgeLib, base) {
              */
 
             IndexApi.__super__.constructor.apply(this, arguments);
+            this.constructorName = 'IndexApi';
         }
 
         IndexApi.include({

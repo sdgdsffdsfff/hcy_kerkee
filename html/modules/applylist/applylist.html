@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<title>我的兼职</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/list.css">
+</head>
+<body>
+	<div class="pagewrap">
+	    <!-- wrap start -->
+	    <article class="mod-margin-box fav-wrap">
+	      <!--filter-->
+	      	<!--loading-->
+	      	<div class="recommend-empty-hintbox displayNone">
+			<div class="excalmatory-mark"></div>
+				<!-- <p>您还没有获得推荐奖励,快推荐好友来做兼职吧,可以拿到丰厚的推荐奖励噢！</p> -->
+				<p>您还没有兼职工作,快来做兼职吧,可以拿到丰厚的报酬噢！</p> 
+			</div>
+	        <section class="loading-pop active">
+	            <div class="spinner">
+	                <div class="spinny"></div>
+	            </div>
+	       	</section>
+	       	<!--top-->
+	        <div class="return-top">TOP</div>
+			<section class="list-box">
+				<ul class="mod-label-listwrap mod-padding-list">
+					<script type="text/html" id="applyList">
+						{{each data as item index}}
+							<li>
+								<a href="doumi://jobdetail?job_id={{item.post_id}}" class="mod-flex">
+									<div class="mod-imgbox">
+										<img src="{{item.post_image}}" class="mod-img">
+										{{if item.show_status==-10}}
+		                                <p class="icons-bg full">
+		                                    <i>{{item.show_status_str}}</i>
+		                                </p>
+		                                {{else}}
+		                                <p class="icons-bg">
+		                                    <i>{{item.show_status_str}}</i>
+		                                </p>
+		                                {{/if}}
+									</div>
+									<div class="mod-cont">
+										<h3 class="list-tit">{{item.post_title}}</h3>
+										<div class="pubtime"> 
+											<i class="icons-clock"></i>
+											<time>{{item.create_at_str}}</time>
+										</div>
+
+										<address class="addr">
+											<i class="icons-site"></i>
+											{{item.post_area}}
+											{{if !!item.distance_long}}
+												<span class="distance">{{item.distance_long}}</span>
+											{{/if}}
+										</address>
+										<!--addr-->
+
+										<div class="mid-r">
+											<i class="salary">
+												{{if item.salary > 0}}
+		                                            <em class="price">{{item.salary}}元</em>/{{item.salary_type_str}}
+		                                        {{else if item.salary==0 && !!item.salary_unit}}
+		                                            <em class="price">{{item.salary_unit}}元</em>/{{item.unit_type_str}}
+		                                        {{else}}
+		                                        	<em class="price">{{item.salary}}元</em>/{{item.salary_type_str}}
+		                                        {{/if}}
+											</i> 
+										</div>
+									</div>
+								</a>
+							</li>
+						{{/each}}
+					</script>
+				</ul>
+
+			<div class="list-finished f-base displayNone loadingList">
+			<span class="list-icon-loading">
+			<i class="list-loading-point"></i>
+			<i class="list-loading-point"></i>
+			<i class="list-loading-point"></i>
+			<i class="list-loading-point"></i>
+			<i class="list-loading-point"></i>
+			</span>
+			加载中...
+			</div>
+			<div class="list-finished f-base displayNone noMoreList">没有更多职位了</div>
+			</section>
+
+	    </article>
+	    <!-- wrap end -->
+    </div>
+    <!--removeIf(production)-->
+	<script type="text/javascript" src="../../vendor/core/SHFLoader.js" data-main="applylist.js"></script> 
+	<!--endRemoveIf(production)-->
+
+	<!-- include:js(applylist.js) -->
+</body>
+</html>

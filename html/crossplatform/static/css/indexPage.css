@@ -1,0 +1,50 @@
+h1.tit {
+    position: absolute;
+    left: 90px;
+    right: 90px;
+    margin: 0;
+}
+.head-city.tit {
+    margin: 0 10px;
+}
+.head-city {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    min-width: 50px;
+    height: 100%;
+}
+.head-city a {
+    display: block;
+    color: #fff;
+    text-align: left;
+    overflow: hidden;
+}
+.head-city a::before {
+    content: "";
+    float: left;
+    width: 12px;
+    height: 17px;
+    background: url(/crossplatform/static/images/ptj_icons.png) no-repeat -80px -20px;
+    -webkit-background-size: 122px auto;
+    -ms-background-size: 122px auto;
+    background-size: 122px auto;
+    margin: 14px 8px 0 0;
+}
+.icon-user {
+    position: relative;
+    float: right;
+    width: 45px;
+    height: 45px;
+}
+.icon-user:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin: -12px 0 0 0;
+    width: 21px;
+    height: 23px;
+    background-position: -100px -20px;
+}

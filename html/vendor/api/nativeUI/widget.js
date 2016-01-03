@@ -181,12 +181,32 @@ define(['api/helper/util'], function (util) {
              * @return {Null} void
              * @example
              *      widget.share(json);
-             * @since 1.0.0
+             * @since 2.1.0
              */
             share: function(json){
                 this.sendData({
                     method:"share",
-                    param: json
+                    param: {
+                        shareData:json
+                    }
+                });
+            },
+            /**
+             * 下拉刷新
+             * @method setPullToRefreshWebView
+             * @public
+             * @param {Boolean} true 控制下拉刷新
+             * @return {Null} void
+             * @example
+             *      widget.setPullToRefreshWebView(true);
+             * @since 2.1.0
+             */
+            setPullToRefreshWebView: function(canRefreshable){
+                this.sendData({
+                    method:"setPullToRefreshWebView",
+                    param: {
+                        canRefreshable: canRefreshable
+                    }
                 });
             }
         });

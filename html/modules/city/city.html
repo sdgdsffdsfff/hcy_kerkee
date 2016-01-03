@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/common.css">
     <link rel="stylesheet" href="../../css/city.css">
 </head>
-<body>
+<body class="js-body">
 <div class="pagewrap">
     <body>
         <div class="pagewrap">
@@ -35,7 +35,7 @@
                             <script type="text/html" id="top-citys-tpl">
                                 <ul class="category js-category">
                                     {{each citys as value i}}
-                                        <li><a class="js-category-a js-change-city" data-domain="{{value.domain}}" data-cityname="{{value.name}}" data-cityid="{{value.id}}" href="javascript:;">{{value.name}}</a></li>
+                                        <li><a class="js-log-topcity js-category-a js-change-city" data-domain="{{value.domain}}" data-cityname="{{value.name}}" data-cityid="{{value.id}}" href="javascript:;">{{value.name}}</a></li>
                                     {{/each}}
                                 </ul>
                             </script>
@@ -56,7 +56,7 @@
                                                 </li>
                                             {{else}}
                                                 <li>
-                                                    <a class="js-change-city" data-domain="{{item.domain}}" data-cityname="{{item.name}}" data-cityid="{{value.id}}" href="javascript:;">
+                                                    <a class="js-change-city" data-domain="{{item.domain}}" data-cityname="{{item.name}}" data-cityid="{{item.id}}" href="javascript:;">
                                                         <b data-citys="false" data-domain="{{item.domain}}">{{item.name}}</b>
                                                     </a>
                                                 </li>
@@ -84,7 +84,7 @@
             <h2 class="pop-hint-txt">当前定位城市是<b class="js-city-position">北京</b><br>与所选城市不一样，是否更改？</h2>
             <ul class="pop-btnbox mod-flex">
                 <li class="js-touch-state mod-cont js-cancel">取消</li>
-                <li class="js-touch-state mod-cont active"><a class="js-change js-change-city" data-domain="bj" data-cityname="北京" data-cityid="12" href="javascript:;">更改</a></li>
+                <li class="js-touch-state mod-cont js-change"><a class="js-change-city" data-domain="bj" data-cityname="北京" data-cityid="12" href="javascript:;">更改</a></li>
             </ul>
         </div>
         <div class="mask"></div>

@@ -1,5 +1,5 @@
 /**
- * 获取新闻客户端相关信息
+ * 获取客户端相关信息
  * @class clientInfo
  * @extends Klass
  * @constructor
@@ -165,7 +165,7 @@ define(['api/helper/util'], function (util) {
              *          protocol: t.secondProtocal
              * 	    };
              * 	    clientInfo.addLog("0","Type="+logObj.Type+"&="+logObj.statType+"&="+logObj.protocol);
-             * @since 1.0.0
+             * @since 2.1.0
              */
             addLog: function (type, log) {
                 this.sendData({
@@ -267,7 +267,71 @@ define(['api/helper/util'], function (util) {
                     },
                     callBack: callBack
                 });
+            },
+
+            /**
+             * 设置缓存
+             * @method setCache
+             * @public
+             * @param {String} key 键值
+             * @param {Object} data 要缓存的数据
+             * @param {Number} cacheTime 缓存时间
+             * @return {Null} void
+             * @example
+             *      clientInfo.setCache(key, data, timeout);
+             * @since 1.0.0
+             */
+            setCache: function (key, data, cacheTime) {
+                this.sendData({
+                    method: "setCache",
+                    param: {
+                       "cacheKey": key,
+                       "cacheData": data,
+                       "cacheTime": cacheTime
+                    }
+                });
+            },
+
+            /**
+             * 获取缓存
+             * @method getCache
+             * @public
+             * @param {String} key 键值
+             * @return {Null} void
+             * @example
+             *      clientInfo.getCache(phoneNumber);
+             * @since 1.0.0
+             */
+            getCache: function (key, callBack) {
+                this.sendData({
+                    method: "getCache",
+                    param: {
+                       "cacheKey": key,
+                       "info": "getCache"
+                    },
+                    callBack:callBack
+                });
+            },
+
+            /**
+             * 获取缓存图片，针对安卓
+             * @method getWebImageCacheDir
+             * @public
+             * @return {Null} void
+             * @example
+             *      clientInfo.getWebImageCacheDir(callBack);
+             * @since android 2.1.0
+             */
+            getWebImageCacheDir : function(callBack){
+                this.sendData({
+                    method: "getWebImageCacheDir",
+                    param: {
+                       "info": "getWebImageCacheDir",
+                    },
+                    callBack:callBack
+                });
             }
+
         });
 
         return ClientInfo;

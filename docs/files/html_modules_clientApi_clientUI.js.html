@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>html/modules/clientApi/clientUI.js - Documenting JavaScript with YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Documenting JavaScript with YUIDoc" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/BaseApi.html">BaseApi</a></li>
+                                <li><a href="../classes/CityApi.html">CityApi</a></li>
+                                <li><a href="../classes/clientInfo.html">clientInfo</a></li>
+                                <li><a href="../classes/clientUI.html">clientUI</a></li>
+                                <li><a href="../classes/detailModules.html">detailModules</a></li>
+                                <li><a href="../classes/IndexApi.html">IndexApi</a></li>
+                                <li><a href="../classes/listModules.html">listModules</a></li>
+                                <li><a href="../classes/phoneSlide.html">phoneSlide</a></li>
+                                <li><a href="../classes/Platform.html">Platform</a></li>
+                                <li><a href="../classes/testModules.html">testModules</a></li>
+                                <li><a href="../classes/userCenter.html">userCenter</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/Widget.html">Widget</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/api.html">api</a></li>
+                                <li><a href="../modules/client.html">client</a></li>
+                                <li><a href="../modules/device.html">device</a></li>
+                                <li><a href="../modules/modules.html">modules</a></li>
+                                <li><a href="../modules/nativeUI.html">nativeUI</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: html/modules/clientApi/clientUI.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * 相关UI
+ * @class clientUI
+ * @extends Klass
+ * @constructor
+ * @module client
+ * @example
+ *     define(&#x27;api/client/clientUI&#x27;,function(clientUI){
+ *          clientUI.showLoadingView();
+ *     });
+ * @since 1.0.0
+ * @public
+ */
+define([&#x27;api/helper/util&#x27;],function(util){
+
+    var ClientUI = (function() {
+
+        //构建一个ClientUI类,继承自基础类
+        util.Klass().sub(ClientUI);
+
+        //构造函数
+        function ClientUI() {
+            /**
+             * 映射客户端类的名称 &lt;strong&gt;(必选)&lt;/strong&gt;
+             * @property nativeCls
+             * @type string
+             * @since 1.0.0
+             * @default &quot;clientUI&quot;
+             * @public
+             */
+
+            /**
+             * jsBridgeClient通信对象 &lt;strong&gt;(必选)&lt;/strong&gt;
+             * @property jsbc
+             * @type string
+             * @since 1.0.0
+             * @default jsBridgeClient
+             * @public
+             */
+
+            /**
+             * 模块信息描述 &lt;strong&gt;(可选)&lt;/strong&gt;
+             * @property name
+             * @type string
+             * @since 1.0.0
+             * @public
+             */
+
+            /**
+             * 模块版本 &lt;strong&gt;(可选)&lt;/strong&gt;
+             * @property verison
+             * @type int
+             * @since 1.0.0
+             * @public
+             */
+
+            /**
+             * 模块作者 &lt;strong&gt;(可选)&lt;/strong&gt;
+             * @property author
+             * @type string
+             * @since 1.0.0
+             * @public
+             */
+            ClientUI.__super__.constructor.apply(this, arguments);
+        }
+
+        ClientUI.include({
+            /**
+             * 调用新闻客户端的toast
+             * @method clientToast
+             * @public
+             * @param {String} msg 消息文本 (必选)
+             * @param {String} type toast类型 (可选)
+             * @return {Null}
+             * @example
+             *        ClientUI.clientToast(&quot;hello&quot;,&quot;notice&quot;)
+             * @since 1.0.0
+             */
+            clientToast:function(msg,type){
+                this.sendData({
+                    method:&quot;clientToast&quot;,
+                    param:{
+                        &quot;msg&quot;:msg,
+                        &quot;type&quot;:type||&quot;notice&quot;   //notice | warn
+                    }
+                });
+            },
+
+            /**
+             * h5调用native的download
+             * @method clientDownloadMainVer
+             * @public
+             * @param {Int} type 下载类型: 1 - 收藏 | 2 - 评论
+             * @return {Null}
+             * @example
+             *        ClientUI.clientDownloadMainVer(1)
+             * @since 1.0.0
+             */
+            clientDownloadMainVer:function(type){
+                this.sendData({
+                    method:&quot;clientDownloadMainVer&quot;,
+                    param:{
+                        &quot;info&quot;:&quot;clientDownloadMainVer&quot;,
+                        &quot;type&quot;:type  //1:收藏| 2:评论
+                    }
+                });
+            },
+
+            /**
+             * h5调用native的城市切换
+             * @method switchLocation
+             * @public
+             * @param {Null} none
+             * @return {Null} void
+             * @example
+             *        ClientUI.switchLocation()
+             * @since 1.0.0
+             */
+            switchLocation:function(){
+                this.sendData({
+                    method:&quot;switchLocation&quot;,
+                    param:{
+                        &quot;info&quot;:&quot;switchLocation&quot;
+                    }
+                });
+            },
+
+            /**
+             * H5调用页面无网络提示
+             * @method showLoadingFailedView
+             * @public
+             * @param {String} channelid 频道id
+             * @param {Boolean} status loading可见: true - 显示 | false - 隐藏
+             * @return {Null} void
+             * @example
+             *        ClientUI.showLoadingFailedView(&quot;25&quot;,true)
+             * @since 1.0.0
+             */
+            showLoadingFailedView:function(channelid,status){
+                this.sendData({
+                    method:&quot;showLoadingFailedView&quot;,
+                    param:{
+                        &quot;visible&quot;:status,    // true | false
+                        &quot;channelid&quot;:channelid
+                    }
+                });
+            },
+
+            /**
+             * h5调用移动网络流量提示
+             * @method showVideoPlayNoWifiConfirmDialog
+             * @public
+             * @param {Function} callBack 回调函数
+             * @return {Object}
+             * {type: &quot;1&quot;}
+             * @example
+             *        ClientUI.showVideoPlayNoWifiConfirmDialog(function(data){
+             *           console.log(data);
+             *        })
+             * &lt;p&gt;主要字段&lt;/p&gt;
+             * &lt;table&gt;
+             * &lt;tr&gt;&lt;th&gt;type&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;
+             * &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;继续播放&lt;/td&gt;&lt;/tr&gt;
+             * &lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;停止播放&lt;/td&gt;&lt;/tr&gt;
+             * &lt;/table&gt;
+             * @since 1.0.0
+             */
+            showVideoPlayNoWifiConfirmDialog:function(callBack){
+                this.sendData({
+                    method:&quot;showVideoPlayNoWifiConfirmDialog&quot;,
+                    param:{
+                        &quot;info&quot;:&quot;showVideoPlayNoWifiConfirmDialog&quot;
+                    },
+                    callBack:callBack
+                });
+            }
+        });
+
+        return ClientUI;
+
+    })();
+
+    return new ClientUI({
+        name:&quot;client ui&quot;,
+        author:&quot;huangjian&quot;,
+        version:&quot;1.0&quot;,
+        jsbc:jsBridgeClient,
+        nativeCls:&quot;clientUI&quot;
+    });
+
+});
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

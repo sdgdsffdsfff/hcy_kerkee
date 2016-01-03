@@ -17,7 +17,9 @@ var path     = require("path");
 var through  = require("through2");
 var util     = require("gulp-util");
 var Q = require('q');
+var os = require('os');
 var debug = true;
+var dek_key = '@Dou$Mi&Jian$Zhi@H5!';
 
 Date.prototype.format = function(format){
     var o = {
@@ -656,7 +658,12 @@ gulp.task('rjsCompression', ["copylib","cleanTarget"], function () {
     var deferred = Q.defer();
 
     var spawn = require('child_process').spawn;
-    var run = spawn('sh', ['-m', devPath + '/build/rjs.sh']);
+    if(!gulp.env.web){
+        var run = spawn('sh', ['-m', devPath + '/build/rjs.sh', 'client']);
+    }else{
+        var run = spawn('sh', ['-m', devPath + '/build/rjs.sh', 'web']);
+    }
+    
     var start = +new Date();
     run.stdout.on('data', function (data) {
         console.log('stdout: ' + data);
@@ -715,8 +722,41 @@ gulp.task('replace', ["remove"], function () {
  * @dest destPath
  */
 gulp.task('cleanTempDir', ["replace"], function () {
-    return gulp.src([tempPath, destPath + "/*.txt", destPath + "/less", destPath + "/tpl", destPath + "/tmod", destPath + "/vendor/lib/underscore.js", destPath + "/build", basePath + "/bin", destPath + "/modules/liveonline"])
+    if(!gulp.env.web){
+        return gulp.src([
+            tempPath, 
+            destPath + "/*.txt", 
+            destPath + "/less", 
+            destPath + "/tpl", 
+            destPath + "/tmod", 
+            destPath + "/vendor/lib/underscore.js", 
+            destPath + "/build", 
+            destPath + "/crossplatform", 
+            basePath + "/bin", 
+            destPath + "/modules/liveonline"
+        ])
         .pipe(plugins.clean());
+    }else{
+        return gulp.src([
+            tempPath, 
+            destPath + "/*.txt", 
+            destPath + "/less", 
+            destPath + "/tpl", 
+            destPath + "/tmod", 
+            destPath + "/vendor/lib/underscore.js", 
+            destPath + "/build", 
+            destPath + "/attach", 
+            destPath + "/jsbridge", 
+            destPath + "/vendor", 
+            destPath + "/crossplatform/injectionPage", 
+            destPath + "/crossplatform/interface", 
+            destPath + "/crossplatform/static/css", 
+            basePath + "/bin", 
+            destPath + "/modules/liveonline"
+        ])
+        .pipe(plugins.clean());
+    }
+    
 });
 /*
  * @desc 将所有资源项目打包压缩并加上时间戳
@@ -724,9 +764,11 @@ gulp.task('cleanTempDir', ["replace"], function () {
  * @deps cleanCss,cleanScript
  * @dest basePath/bin
  */
-gulp.task('compression', ["cleanTempDir"], function () {
-    var timesup=new Date().format("MMddhhmmss");
 
+var globalTimesup = '';
+gulp.task('compressionzip', ["cleanTempDir"], function () {
+    var timesup=new Date().format("MMddhhmmss");
+    globalTimesup = timesup;
     gulp.src([destPath + '/**/*'])
         .pipe(plugins.zip("html_"+timesup+".zip"))
         .pipe(gulp.dest(basePath + "/bin"))
@@ -738,9 +780,131 @@ gulp.task('compression', ["cleanTempDir"], function () {
         .pipe(plugins.notify({message: 'coprass dest complete'}));
 });
 
+
+
 /*
- * @desc 项目构建
+ * @desc dek加密html.zip文件
+ * @src  devPath destPath
+ * @deps compressionzip
+ * @dest basePath/bin
  */
-gulp.task('build', ["compression"], function () {
-    console.log("build ok");
+gulp.task('dekhtml', ["compressionzip"], function () {
+    var deferred = Q.defer();
+    var commond = '';
+    var spawn = require('child_process').spawn;
+    //./dek -i a.zip -o b.dek -k I'mKey –e
+    if(os.platform().toLowerCase() == 'linux'){
+        commond = './dek_linux';
+    }else{
+        commond = './dek';
+    }
+    var run = spawn(commond, ['-i', 'bin/html_' + globalTimesup + '.zip', '-k', dek_key, '-e']);
+    run.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    run.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    run.on('exit', function (code) {
+        console.log("dek html.zip end");
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+
 });
+
+/*
+ * @desc dek加密dev.zip文件
+ * @src  devPath destPath
+ * @deps dekhtml
+ * @dest basePath/bin
+ */
+gulp.task('dekdev', ["dekhtml"], function () {
+    var deferred = Q.defer();
+    var commond = '';
+    var spawn = require('child_process').spawn;
+    //./dek -i a.zip -o b.dek -k I'mKey –e
+    if(os.platform().toLowerCase() == 'linux'){
+        commond = './dek_linux';
+    }else{
+        commond = './dek';
+    }
+    var run = spawn(commond, ['-i', 'bin/dev_' + globalTimesup + '.zip', '-k', dek_key, '-e']);
+    run.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    run.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    run.on('exit', function (code) {
+        console.log("dek dev.zip end");
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+
+});
+
+/*
+ * @desc 重命名dek文件
+ * @src  devPath destPath
+ * @deps dekdev
+ * @dest basePath/bin
+ */
+gulp.task('renameDevDek', ["dekdev"], function () {
+    var deferred = Q.defer();
+
+    var spawn = require('child_process').spawn;
+    //./dek -i a.zip -o b.dek -k I'mKey –e
+    var run = spawn('mv', ['./bin/dev_' + globalTimesup + '.zip.dek', './bin/dev_' + globalTimesup + '.dek']);
+    run.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    run.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    run.on('exit', function (code) {
+        console.log("rename end");
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+
+});
+
+/*
+ * @desc 重命名dek文件
+ * @src  devPath destPath
+ * @deps dekdev
+ * @dest basePath/bin
+ */
+gulp.task('renameHtmlDek', ["renameDevDek"], function () {
+    var deferred = Q.defer();
+
+    var spawn = require('child_process').spawn;
+    //./dek -i a.zip -o b.dek -k I'mKey –e
+    var run = spawn('mv', ['./bin/html_' + globalTimesup + '.zip.dek', './bin/html_' + globalTimesup + '.dek']);
+    run.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
+    run.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
+    run.on('exit', function (code) {
+        console.log("rename end");
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+
+});
+
+/*
+ * @desc 项目构建 - 构建依赖客户端平台的项目
+ */
+gulp.task('build', ["renameHtmlDek"], function () {
+    console.log('{"timesup" : "' + globalTimesup + '"}')
+    // console.log(os.platform());
+});
+

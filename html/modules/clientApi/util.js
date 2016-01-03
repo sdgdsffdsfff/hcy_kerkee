@@ -20,6 +20,21 @@ define(["zepto", "template"], function ($, template) {
             return _val;
         },
 
+        /**
+         * 获取单例 - 通用惰性单例
+         * @method getSingle
+         * @param {Function} fn 要实现单例的函数或方法
+         * @param {Object} _this 执行fn函数的内部this对象，可省略
+         * @return {Function} 单例化之后的函数
+         */
+        getSingle : function(fn, _this){
+            var res = null;
+            return function(){
+                _this = _this || this;
+                return res || (res = fn.apply(_this, arguments));
+            }
+        },
+
         /*
          * 调试页面方法
          */
@@ -63,131 +78,6 @@ define(["zepto", "template"], function ($, template) {
                 return false;
             }
             return true;
-        },
-
-
-        /**
-         * 实现一个js对象的基类,具有与native通信,原型继承,deviceready等方法
-         */
-        Klass:function(){
-            var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-                bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-                hasProp = {}.hasOwnProperty,
-                extendObj=function (target, source) {for (var p in source) {if (source.hasOwnProperty(p)) {target[p] = source[p];}}return target;};
-
-            var BaseCls=(function(){
-
-                /** 初始化参数
-                 * 初始类对象字符串
-                 * @property attributes (必选)
-                 * @type Object
-                 * @since 1.0.0
-                 * @public
-                 */
-                function BaseCls(attributes) {
-                    this.attributes=attributes;
-                }
-
-                /**
-                 * 给基础类添加实例方法
-                 * @method include
-                 * @static
-                 * @param {Object} obj 实例方法键值对
-                 * @return {Null}
-                 * @example
-                 *      BaseCls.include({
-                 *          addLog:function(type,log){}
-                 * 	    })
-                 * @since 1.0.0
-                 */
-                BaseCls.include=function(obj){
-                    var included=obj.included;
-                    for(var i in obj){
-                        BaseCls.prototype[i]=obj[i];
-                    }
-                    if(included){
-                        included(BaseCls);
-                    }
-                };
-
-                /**
-                 * 创建一个子类
-                 * @method sub
-                 * @static
-                 * @param {Constructor} child 构建函数
-                 * @return {Constructor}
-                 * @example
-                 *      BaseCls.sub(ClientInfo)
-                 * @since 1.0.0
-                 */
-                BaseCls.sub=function(child){
-                    return extend(child,this);
-                };
-
-                /**
-                 * 与jsbridge进行通信
-                 * @method _exec
-                 * @private
-                 * @param {Object} data js对象串
-                 * @return {Null | Cllaback}
-                 * @example
-                 *      this._exec(data)
-                 * @since 1.0.0
-                 */
-                BaseCls.prototype._exec=function(data){
-                    if(!data.callBack){
-                        this.attributes.jsbc.invoke(data.nativeCls,data.method,data.param);
-                    }else{
-                        this.attributes.jsbc.invoke(data.nativeCls,data.method,data.param,data.callBack);
-                    }
-                };
-
-                /**
-                 * 对_exec方法进行封装
-                 * @method sendData
-                 * @public
-                 * @param {Object} param js对象串
-                 * <p>主要参数</p>
-                 * <table>
-                 * <tr><th>参数名称</th><th>参数说明</th></tr>
-                 * <tr><td>nativeCls</td><td>映射native类名</td></tr>
-                 * <tr><td>method</td><td>映射映射native方法</td></tr>
-                 * <tr><td>param</td><td>H5传递到native的json参数</td></tr>
-                 * <tr><td>callback</td><td>native通知h5的回调</td></tr>
-                 * </table>
-                 * @return {Null | Callback}
-                 * @example
-                 *      this.sendData(data)
-                 * @since 1.0.0
-                 */
-                BaseCls.prototype.sendData=function(param){
-                    var data=extendObj({
-                        nativeCls:this.attributes.nativeCls,
-                        method:"",
-                        param:{}
-                    },param);
-                    this._exec(data);
-                };
-
-                /**
-                 * 设备初始化完成
-                 * @method start
-                 * @public
-                 * @param {Function} callBack 回调函数
-                 * @return {Null}
-                 * @example
-                 *      this.start(function(){})
-                 * @since 1.0.0
-                 */
-                BaseCls.prototype.start=function(callBack){
-                    this.attributes.jsbc.onDeviceReady(callBack);
-                };
-
-                return BaseCls;
-
-            })();
-
-            return BaseCls;
         },
 
         //日期格式初始化
@@ -246,7 +136,6 @@ define(["zepto", "template"], function ($, template) {
         //判断当前系统是ios或andorid
         OS:function(){
             var os = navigator.userAgent.match(/iphone|ipad|ipod/i) ? "ios" : "android";
-            $("html").addClass(os);
             return os;
         },
 
@@ -413,81 +302,6 @@ define(["zepto", "template"], function ($, template) {
             });
         },
 
-        /*scrollView*/
-        scrollViewer: {
-            getTopHeight: function () {
-                return {
-                    pTop: window.pageYOffset || document.documentElement.scrollTop,
-                    pHeight: document.documentElement.clientHeight || window.innerHeight
-                };
-            },
-            /**
-             * 当页面滚动到可视区域时处理某事件
-             * @param ele
-             * @param options {iScreens:2,pTop:100,pHeight:200，handle:function(){}}
-             */
-            inViewPort: function (ele, options) {
-                var me = this,
-                    iScreens = 1, //1=当前屏;2=下一屏
-                    pTop = options.pTop, //scrollTop
-                    pHeight = options.pHeight, //clientHeight
-                    pBottom,
-                    $document=$(document),
-                    $window=$(window);
-
-                if (options.iScreens) {
-                    iScreens = options.iScreens;
-                }
-
-                if (!pTop) {
-                    pTop = me.getTopHeight().pTop;
-                }
-
-                if (!pHeight) {
-                    pHeight = me.getTopHeight().pHeight;
-                }
-
-                pBottom = pTop + pHeight * iScreens;
-
-                var fn = function () {
-                    if (typeof(options.handle) == "function") {
-                        options.handle();
-                    }
-                };
-
-                if (ele) {
-                    if (ele.getBoundingClientRect) {
-                        var eleTop = ele.getBoundingClientRect().top + pTop,
-                            eleBottom = eleTop + ele.clientHeight;
-                        //可视区域范围(eleTop > pTop && eleTop < pBottom) && (eleBottom > pTop && eleBottom < pBottom)
-                        //浏览过的视图范围 eleTop>=0 && pBottom-eleBottom>=0
-                        if ((eleTop > pTop && eleTop < pBottom) && (eleBottom > pTop && eleBottom < pBottom)) {
-                            fn();
-                        }
-                    } else {
-                        var scrollPos =$window.scrollTop();
-                        var totalHeight = parseFloat($window.height()) + parseFloat(scrollPos);
-                        if ((($document.height() - 20) <= totalHeight)) {
-                            fn();
-                        }
-                    }
-                }
-            },
-
-            create:function(id,callBack){
-                var ele=document.querySelector(id);
-                var pPos = Utils.scrollViewer.getTopHeight();
-                Utils.scrollViewer.inViewPort(ele, {
-                    iScreens: 1,
-                    pTop: pPos.pTop,
-                    pHeight: pPos.pHeight + 150,
-                    handle: function () {
-                        callBack();
-                    }
-                });
-            }
-        },
-
         // 设置夜间模式 1夜间  0日间
         chgMode:function chgMode(num) {
             var $ele = $("#myMode");
@@ -552,8 +366,45 @@ define(["zepto", "template"], function ($, template) {
                 arr.push(name+'='+json[name]);
             }
             return arr.join('&');
-        }
+        },
 
+        //添加点击的阴影效果
+        //className className '.active'
+        //changeColor 改变成什么样
+        //color 原来颜色
+        touchActiveBackground:function(className,changeColor,color){
+            var startTimer=null,
+                moveTimer=null,
+                endTimer=null;
+            changeColor=changeColor || '#ececec';
+            color=color || '#fff';
+             
+            $('body').on('touchstart',className,function(e){
+                var _this=$(this);
+                clearTimeout(moveTimer);
+                clearTimeout(startTimer);
+                clearTimeout(endTimer);
+                startTimer=setTimeout(function(){
+                    _this.css({'background':changeColor});
+                },50);
+            });
+            $('body').on('touchmove',function(){
+                clearTimeout(startTimer);
+                clearTimeout(moveTimer);
+                clearTimeout(endTimer);
+                moveTimer=setTimeout(function(){
+                    $(className).css({'background':color});
+                },200);
+            });
+            $('body').on('touchend',className,function(e){
+                clearTimeout(startTimer);
+                clearTimeout(moveTimer);
+                clearTimeout(endTimer);
+                endTimer=setTimeout(function(){
+                    $(className).css({'background':color});
+                },500);
+            });
+        }
     };
     return Utils;
 });

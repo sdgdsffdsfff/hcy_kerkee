@@ -30,14 +30,26 @@
             name: 'applylist/applylist',
             include: ['almond', 'applylist/applylistDo']
         },{
-            name: 'invitecode/invitecode',
-            include: ['almond', 'invitecode/invitecodeDo']
-        },{
             name: 'index/index',
             include: ['almond', 'index/indexDo']
         },{
             name: 'city/city',
-            include: ['almond', 'city/cityDo']
+            include: ['almond', 'city/cityDo',]
+        },{
+            name: 'recommend/recommend',
+            include: ['almond', 'recommend/recommendDo']
+        },{
+            name: 'recommendlist/recommendlist',
+            include: ['almond', 'recommendlist/recommendlistDo']
+        },{
+            name: 'recommenddetail/recommenddetail',
+            include: ['almond', 'recommenddetail/recommenddetailDo']
+        },{
+            name: 'jobsummary/jobsummary',
+            include: ['almond', 'jobsummary/jobsummaryDo'] 
+        },{
+            name: 'recommenduserlist/recommenduserlist',
+            include: ['almond', 'recommenduserlist/recommenduserlistDo'] 
         }
     ],
     fileExclusionRegExp: /(^build)|(.idea)|(gulpfile.js)|(gulp.sh)|(package.json)|(.gitignore)|(tpl)|(less)$/,
@@ -53,23 +65,25 @@
         'css':'../vendor/plugin/require.css'
     },
 
-
     paths: {
         api:"../vendor/api",
         bridgeLib: "../bridgeLib",
+        swiper: "../vendor/lib/swiper.min",
         jquery: '../vendor/lib/jquery-2.1.3',
         zepto:"../vendor/lib/zepto.min",
+        swiper: "../vendor/lib/swiper.min",
         fastclick: "../vendor/lib/fastclick",
         lazyload:"../vendor/lib/jquery.lazyload",
         template: '../vendor/lib/template',
         when: '../vendor/lib/when',
         orgwhen: '../vendor/lib/orgwhen',
         almond:"../vendor/plugin/almond",
+        underscore: '../vendor/lib/underscore',
         domReady: '../vendor/plugin/domReady',
         text: '../vendor/plugin/require.text',
         css: '../vendor/plugin/require.css',
         text_path:"../modules",     // eg:"text!text_path/channel.tpl.html"
-        css_path:"../css"           // eg:"css!css_path/new.css"
+        css_path:"../css",           // eg:"css!css_path/new.css"
     },
 
     shim: {

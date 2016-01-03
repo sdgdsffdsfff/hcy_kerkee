@@ -5,4 +5,10 @@ source ./config.sh
 echo "rjs.sh":$(pwd)
 cd ${basePath}/${devRootDir}/build
 echo $(pwd)
-node r.js -o build.js
+
+if [ "$1" = "client" ];
+then
+	node r.js -o build.js
+else
+	node r.js -o webbuild.js
+fi

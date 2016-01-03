@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>target/vendor/plugin/require.text.js - Documenting JavaScript with YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Documenting JavaScript with YUIDoc" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/BaseApi.html">BaseApi</a></li>
+                                <li><a href="../classes/CityApi.html">CityApi</a></li>
+                                <li><a href="../classes/clientInfo.html">clientInfo</a></li>
+                                <li><a href="../classes/clientUI.html">clientUI</a></li>
+                                <li><a href="../classes/detailModules.html">detailModules</a></li>
+                                <li><a href="../classes/IndexApi.html">IndexApi</a></li>
+                                <li><a href="../classes/listModules.html">listModules</a></li>
+                                <li><a href="../classes/phoneSlide.html">phoneSlide</a></li>
+                                <li><a href="../classes/Platform.html">Platform</a></li>
+                                <li><a href="../classes/testModules.html">testModules</a></li>
+                                <li><a href="../classes/userCenter.html">userCenter</a></li>
+                                <li><a href="../classes/Utils.html">Utils</a></li>
+                                <li><a href="../classes/Widget.html">Widget</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/api.html">api</a></li>
+                                <li><a href="../modules/client.html">client</a></li>
+                                <li><a href="../modules/device.html">device</a></li>
+                                <li><a href="../modules/modules.html">modules</a></li>
+                                <li><a href="../modules/nativeUI.html">nativeUI</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: target/vendor/plugin/require.text.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @license RequireJS text 2.0.12 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: http://github.com/requirejs/text for details
+ */
+
+define([&quot;module&quot;],function(e){&quot;use strict&quot;;var t,n,r,i,s,o=[&quot;Msxml2.XMLHTTP&quot;,&quot;Microsoft.XMLHTTP&quot;,&quot;Msxml2.XMLHTTP.4.0&quot;],u=/^\s*&lt;\?xml(\s)+version=[\&#x27;\&quot;](\d)*.(\d)*[\&#x27;\&quot;](\s)*\?&gt;/im,a=/&lt;body[^&gt;]*&gt;\s*([\s\S]+)\s*&lt;\/body&gt;/im,f=typeof location!=&quot;undefined&quot;&amp;&amp;location.href,l=f&amp;&amp;location.protocol&amp;&amp;location.protocol.replace(/\:/,&quot;&quot;),c=f&amp;&amp;location.hostname,h=f&amp;&amp;(location.port||undefined),p={},d=e.config&amp;&amp;e.config()||{};t={version:&quot;2.0.12&quot;,strip:function(e){if(e){e=e.replace(u,&quot;&quot;);var t=e.match(a);t&amp;&amp;(e=t[1])}else e=&quot;&quot;;return e},jsEscape:function(e){return e.replace(/([&#x27;\\])/g,&quot;\\$1&quot;).replace(/[\f]/g,&quot;\\f&quot;).replace(/[\b]/g,&quot;\\b&quot;).replace(/[\n]/g,&quot;\\n&quot;).replace(/[\t]/g,&quot;\\t&quot;).replace(/[\r]/g,&quot;\\r&quot;).replace(/[\u2028]/g,&quot;\\u2028&quot;).replace(/[\u2029]/g,&quot;\\u2029&quot;)},createXhr:d.createXhr||function(){var e,t,n;if(typeof XMLHttpRequest!=&quot;undefined&quot;)return new XMLHttpRequest;if(typeof ActiveXObject!=&quot;undefined&quot;)for(t=0;t&lt;3;t+=1){n=o[t];try{e=new ActiveXObject(n)}catch(r){}if(e){o=[n];break}}return e},parseName:function(e){var t,n,r,i=!1,s=e.indexOf(&quot;.&quot;),o=e.indexOf(&quot;./&quot;)===0||e.indexOf(&quot;../&quot;)===0;return s!==-1&amp;&amp;(!o||s&gt;1)?(t=e.substring(0,s),n=e.substring(s+1,e.length)):t=e,r=n||t,s=r.indexOf(&quot;!&quot;),s!==-1&amp;&amp;(i=r.substring(s+1)===&quot;strip&quot;,r=r.substring(0,s),n?n=r:t=r),{moduleName:t,ext:n,strip:i}},xdRegExp:/^((\w+)\:)?\/\/([^\/\\]+)/,useXhr:function(e,n,r,i){var s,o,u,a=t.xdRegExp.exec(e);return a?(s=a[2],o=a[3],o=o.split(&quot;:&quot;),u=o[1],o=o[0],(!s||s===n)&amp;&amp;(!o||o.toLowerCase()===r.toLowerCase())&amp;&amp;(!u&amp;&amp;!o||u===i)):!0},finishLoad:function(e,n,r,i){r=n?t.strip(r):r,d.isBuild&amp;&amp;(p[e]=r),i(r)},load:function(e,n,r,i){if(i&amp;&amp;i.isBuild&amp;&amp;!i.inlineText){r();return}d.isBuild=i&amp;&amp;i.isBuild;var s=t.parseName(e),o=s.moduleName+(s.ext?&quot;.&quot;+s.ext:&quot;&quot;),u=n.toUrl(o),a=d.useXhr||t.useXhr;if(u.indexOf(&quot;empty:&quot;)===0){r();return}!f||a(u,l,c,h)?t.get(u,function(n){t.finishLoad(e,s.strip,n,r)},function(e){r.error&amp;&amp;r.error(e)}):n([o],function(e){t.finishLoad(s.moduleName+&quot;.&quot;+s.ext,s.strip,e,r)})},write:function(e,n,r,i){if(p.hasOwnProperty(n)){var s=t.jsEscape(p[n]);r.asModule(e+&quot;!&quot;+n,&quot;define(function () { return &#x27;&quot;+s+&quot;&#x27;;});\n&quot;)}},writeFile:function(e,n,r,i,s){var o=t.parseName(n),u=o.ext?&quot;.&quot;+o.ext:&quot;&quot;,a=o.moduleName+u,f=r.toUrl(o.moduleName+u)+&quot;.js&quot;;t.load(a,r,function(n){var r=function(e){return i(f,e)};r.asModule=function(e,t){return i.asModule(e,f,t)},t.write(e,a,r,s)},s)}};if(d.env===&quot;node&quot;||!d.env&amp;&amp;typeof process!=&quot;undefined&quot;&amp;&amp;process.versions&amp;&amp;!!process.versions.node&amp;&amp;!process.versions[&quot;node-webkit&quot;])n=require.nodeRequire(&quot;fs&quot;),t.get=function(e,t,r){try{var i=n.readFileSync(e,&quot;utf8&quot;);i.indexOf(&quot;﻿&quot;)===0&amp;&amp;(i=i.substring(1)),t(i)}catch(s){r&amp;&amp;r(s)}};else if(d.env===&quot;xhr&quot;||!d.env&amp;&amp;t.createXhr())t.get=function(e,n,r,i){var s=t.createXhr(),o;s.open(&quot;GET&quot;,e,!0);if(i)for(o in i)i.hasOwnProperty(o)&amp;&amp;s.setRequestHeader(o.toLowerCase(),i[o]);d.onXhr&amp;&amp;d.onXhr(s,e),s.onreadystatechange=function(t){var i,o;s.readyState===4&amp;&amp;(i=s.status||0,i&gt;399&amp;&amp;i&lt;600?(o=new Error(e+&quot; HTTP status: &quot;+i),o.xhr=s,r&amp;&amp;r(o)):n(s.responseText),d.onXhrComplete&amp;&amp;d.onXhrComplete(s,e))},s.send(null)};else if(d.env===&quot;rhino&quot;||!d.env&amp;&amp;typeof Packages!=&quot;undefined&quot;&amp;&amp;typeof java!=&quot;undefined&quot;)t.get=function(e,t){var n,r,i=&quot;utf-8&quot;,s=new java.io.File(e),o=java.lang.System.getProperty(&quot;line.separator&quot;),u=new java.io.BufferedReader(new java.io.InputStreamReader(new java.io.FileInputStream(s),i)),a=&quot;&quot;;try{n=new java.lang.StringBuffer,r=u.readLine(),r&amp;&amp;r.length()&amp;&amp;r.charAt(0)===65279&amp;&amp;(r=r.substring(1)),r!==null&amp;&amp;n.append(r);while((r=u.readLine())!==null)n.append(o),n.append(r);a=String(n.toString())}finally{u.close()}t(a)};else if(d.env===&quot;xpconnect&quot;||!d.env&amp;&amp;typeof Components!=&quot;undefined&quot;&amp;&amp;Components.classes&amp;&amp;Components.interfaces)r=Components.classes,i=Components.interfaces,Components.utils[&quot;import&quot;](&quot;resource://gre/modules/FileUtils.jsm&quot;),s=&quot;@mozilla.org/windows-registry-key;1&quot;in r,t.get=function(e,t){var n,o,u,a={};s&amp;&amp;(e=e.replace(/\//g,&quot;\\&quot;)),u=new FileUtils.File(e);try{n=r[&quot;@mozilla.org/network/file-input-stream;1&quot;].createInstance(i.nsIFileInputStream),n.init(u,1,0,!1),o=r[&quot;@mozilla.org/intl/converter-input-stream;1&quot;].createInstance(i.nsIConverterInputStream),o.init(n,&quot;utf-8&quot;,n.available(),i.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER),o.readString(n.available(),a),o.close(),n.close(),t(a.value)}catch(f){throw new Error((u&amp;&amp;u.path||&quot;&quot;)+&quot;: &quot;+f)}};return t});
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

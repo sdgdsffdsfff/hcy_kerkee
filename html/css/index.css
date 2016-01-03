@@ -41,7 +41,7 @@
     font-size: 1.6px;
     font-size: 1.33rem;
     border-bottom: 1px solid #e6e6e6;
-    color: #34a853;
+    color: #fbbc05;
 }
 
 .icon-mrose {
@@ -151,4 +151,46 @@
 }
 .js-body{
    display: none; 
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-slide img{
+    width: 100%;
+}
+.swiper-pagination-bullet-active{
+    background: #000;
+}
+@-webkit-keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.pt-page-fade {
+    -webkit-animation: fade 1s ease both;
+    animation: fade 1s ease both;
 }

@@ -40,57 +40,68 @@ define([
 
             var t = this;
 
-            // 获取网络信息
-            clientInfo.getNetworkType(function(data){
-                if(data.network=='invalid'){
-                    t.netWork=false;
-                }
-            });
-
             // 获取域名信息
             clientInfo.getHost(function(host){
                 t.host=host.info;
-                if(t.netWork){
 
-                    // 从客户端获取参数
-                    cityApi.getOptions(function(data){
-                        t.param = data;
-
+                // 从客户端获取参数
+                cityApi.getOptions(function(data){
+                    t.param = data;
+                    if(!t.param.cityid){
+                        // 定位失败
+                        $('.js-city-position').html('定位失败');
+                        $('.location').addClass('active');
+                        $('.icon-refresh').removeClass('active');
+                        widget.toast('定位失败，请手动切换城市');
+                    }else{
                         t.compCity(t.param.citydomain, t.param.s_citydomain, t.param.city, t.param.cityid);
-                        
-                    });
-
-                    // 点击定位城市
-                    $('.icon-refresh').on('click', function(){
-                        $('.location').removeClass('active');
-                        $('.icon-refresh').addClass('active');
-                        $('.js-city-position').html('正在定位中');
-                        t.getPosCity();
-                    });
-
-                    // 加载热门城市
-                    t.loadTopCityData()
-                    .then(function(){
-                        // 点击可切换的城市，向客户端发送请求
-                        
-                        $('.js-change-city').off('click');
-                        $('.js-change-city').on('click', function(){
-                            $.proxy(t.sendDataChangeCity, this)();
-                        });
-                    }, function(){
-                        widget.toast('网络错误，请刷新重试');
-                    });
-
-                    // 加载其他城市
-                    t.loadOtherCityData()
-                    .then(t.toggleCity, function(){
-                        widget.toast('网络错误，请刷新重试');
-                    });
+                    }
                     
+                });
 
-                }else{
-                    widget.loadState();
-                }     
+                // 点击定位城市
+                $('.icon-refresh').on('click', function(){
+                    $('.location').removeClass('active');
+                    $('.icon-refresh').addClass('active');
+                    $('.js-city-position').html('正在定位中');
+                    t.getPosCity();
+                });
+
+                // 弹窗按钮添加点击效果
+                $('.js-touch-state').on('touchstart', function(){
+                    $(this).addClass('active');
+                });
+                $('.js-touch-state').on('touchend', function(){
+                    $(this).removeClass('active');
+                });
+
+
+                clientInfo.getCache('topCityData', function(data){
+                    if(!data){
+                        // 没有缓存
+                        // 加载热门城市
+                        t.loadTopCityData();
+                    }else{
+
+                        // 加载热门城市
+                        t.loadTopCityData(data);
+                        
+                    }
+                });
+
+                clientInfo.getCache('otherCityData', function(data){
+                    if(!data){
+                        // 没有缓存
+                        // 加载其他城市
+                        t.loadOtherCityData();
+                    }else{
+
+                        // 加载其他城市
+                        t.loadOtherCityData(data);
+                        
+                    }
+                });
+                   
             });
 
         };
@@ -108,8 +119,15 @@ define([
             var t = this;
 
             cityApi.getPosition(function(data){
-
-                t.compCity(data.citydomain, t.param.s_citydomain, data.city, data.cityid);
+                if(!data){
+                    // 定位失败
+                    $('.js-city-position').html('定位失败');
+                    $('.location').addClass('active');
+                    $('.icon-refresh').removeClass('active');
+                    widget.toast('定位失败，请手动切换城市');
+                }else{
+                    t.compCity(data.citydomain, t.param.s_citydomain, data.city, data.cityid);
+                }
                 
             });
         
@@ -132,6 +150,7 @@ define([
             var t = this;
             $('.location').addClass('active');
             $('.icon-refresh').removeClass('active');
+
             $('.js-city-position').html(city);
             if(citydomain != s_citydomain){
 
@@ -195,83 +214,192 @@ define([
          * 加载开通城市数据(热门城市)
          * @method loadTopCityData
          * @public
-         * @param {String} host api接口域名
+         * @param {Array} cacheData 数据，如果cacheData不是undefined，证明有缓存数据
          * @return {Null}
          * @example
-         *      this.loadTopCityData(host);
+         *      this.loadTopCityData(cacheData);
          * @since 1.0.0
          */
-        cityDo.prototype.loadTopCityData = function(){
+        cityDo.prototype.loadTopCityData = function(cacheData){
             var t = this;
-            var dfd = $.Deferred();
-            $.ajax({
-                type : 'GET',
-                // url : '/api/v1/client/citys',
-                url : t.host + '/api/v1/client/citys',
-                success : function(data){
 
-                    var _data = {};
-                    _data.citys = data;
-                    var topCitysHtml = util.compileTempl('top-citys-tpl', _data);
-                    $('.js-top-citys-wrap').html(topCitysHtml);
+            if(cacheData){
+                t.renderTopCity(cacheData);
+            }
+            clientInfo.getNetworkType(function(data){
+                if(data.network != 'invalid'){
+                    // 有网
+                    $.ajax({
+                        type : 'GET',
+                        // url : '/api/v1/client/citys',
+                        url : t.host + '/api/v1/client/citys',
+                        timeout : 10000,
+                        data:{
+                            platform:util.OS,
+                            token:''
+                        },
+                        success : function(data){
+                            if(!!data && $.isArray(data)){
 
-                    dfd.resolve();
+                                if(!cacheData){
+                                    t.renderTopCity(data);
+                                }
+                                // 更新缓存数据
+                                clientInfo.setCache('topCityData', data, 3 * 24 * 60 * 60);
 
-                },
-                error : function(){
-                    dfd.reject();
+                            }else{
+                                if(!cacheData){
+                                    widget.toast('网络异常');
+                                }
+                            }
+
+                        },
+                        error : function(xhr, status){
+                            if(!cacheData){
+                                if(status == 'timeout'){
+                                    widget.toast('网络请求超时');
+                                }else{
+                                    widget.toast('网络异常');
+                                }
+                            }
+                            
+                        }
+                    });
+                }else{
+                    // 无网
+                    if(!cacheData){
+                        widget.loadState();
+                    }else{
+                        // widget.toast('网络异常');
+                    }
                 }
             });
 
-            return dfd.promise();
         };
 
         /*
          * 加载其他城市数据
          * @method loadOtherCityData
          * @public
-         * @param {String} host api接口域名
+         * @param {Array} cacheData 数据，如果cacheData不是undefined，证明有缓存数据
          * @return {Null}
          * @example
-         *      this.loadOtherCityData(host);
+         *      this.loadOtherCityData(cacheData);
          * @since 1.0.0
          */
-        cityDo.prototype.loadOtherCityData = function(){
+        cityDo.prototype.loadOtherCityData = function(cacheData){
             var t = this;
-            var dfd = $.Deferred();
 
-            $.ajax({
-                type : 'GET',
-                // url : '/api/v1/client/provinces',
-                url : t.host + '/api/v1/client/provinces',
-                success : function(data){
-                    
-                    // 数据处理成适合模板的结构
-                    var _data = {};
-                    var dataLength = data.length;
-                    var tempArray = [];
-                    for(var i = 0; i < Math.ceil(dataLength / 4); i++){
-                        tempArray.push(data.slice(i * 4, (i * 4) + 4));
+            if(cacheData){
+                t.renderOtherCity(cacheData);
+            }
+            clientInfo.getNetworkType(function(data){
+
+                if(data.network != 'invalid'){
+                    // 有网
+                    $.ajax({
+                        type : 'GET',
+                        // url : '/api/v1/client/provinces',
+                        url : t.host + '/api/v1/client/provinces',
+                        data:{
+                            platform:util.OS,
+                            token:''
+                        },
+                        success : function(data){
+                            
+                            if(!!data && $.isArray(data)){
+                                
+                                if(!cacheData){
+                                    t.renderOtherCity(data);
+                                }
+                                // 更新缓存数据
+                                clientInfo.setCache('otherCityData', data, 3 * 24 * 60 * 60);
+
+                            }else{
+                                if(!cacheData){
+                                    widget.toast('网络异常');
+                                }
+                            }
+
+                        },
+                        error : function(xhr, status){
+                            if(!cacheData){
+                                if(status == 'timeout'){
+                                    widget.toast('网络请求超时');
+                                }else{
+                                    widget.toast('网络异常');
+                                }
+                            }
+                        }
+                    });
+                }else{
+                    // 无网
+                    if(!cacheData){
+                        widget.loadState();
+                    }else{
+                        // widget.toast('N');
                     }
-
-                    t.otherCityData = data;
-
-                    _data.provinces = tempArray;
-
-                    var otherCitysHtml = util.compileTempl('other-citys-tpl', _data);
-                    $('.js-other-citys-wrap').html(otherCitysHtml);
-
-                    dfd.resolve(t);
-
-                },
-                error : function(){
-                    dfd.reject();
                 }
+
             });
 
-            return dfd.promise();
-
         };
+
+        /*
+         * 渲染热门城市数据
+         * @method renderTopCity
+         * @public
+         * @param {Array} data
+         * @return {Null}
+         * @example
+         *      this.renderTopCity(data);
+         * @since 1.0.0
+         */
+        cityDo.prototype.renderTopCity = function(data){
+            var t = this;
+            var _data = {};
+            _data.citys = data;
+
+            var topCitysHtml = util.compileTempl('top-citys-tpl', _data);
+            $('.js-top-citys-wrap').html(topCitysHtml);
+
+            // 点击可切换的城市，向客户端发送请求
+            $('.js-body').show();
+            $('.js-change-city').off('click');
+            $('.js-change-city').on('click', function(){
+                $.proxy(t.sendDataChangeCity, this)();
+            });
+        }
+
+        /*
+         * 渲染其他城市数据
+         * @method renderOtherCity
+         * @public
+         * @param {Array} data
+         * @return {Null}
+         * @example
+         *      this.renderOtherCity(data);
+         * @since 1.0.0
+         */
+        cityDo.prototype.renderOtherCity = function(data){
+            // 数据处理成适合模板的结构
+            var t = this;
+            var _data = {};
+            var dataLength = data.length;
+            var tempArray = [];
+            for(var i = 0; i < Math.ceil(dataLength / 4); i++){
+                tempArray.push(data.slice(i * 4, (i * 4) + 4));
+            }
+
+            t.otherCityData = data;
+
+            _data.provinces = tempArray;
+
+            var otherCitysHtml = util.compileTempl('other-citys-tpl', _data);
+            $('.js-other-citys-wrap').html(otherCitysHtml);
+
+            t.toggleCity();
+        }
 
         /*
          * 点击带有子城市的省份展开/收起的方法
@@ -282,10 +410,12 @@ define([
          *      this.toggleCity();
          * @since 1.0.0
          */
-        cityDo.prototype.toggleCity = function(_this){
+        cityDo.prototype.toggleCity = function(){
         
-            var t = _this;
+            var t = this;
             var city;
+
+            $('.js-body').show();
 
             // 点击省份 展开城市
             $('.city-true').on('click', function(){
@@ -353,7 +483,6 @@ define([
             jsonParam.citydomain = $(this).data('domain');
             jsonParam.cityname = $(this).data('cityname');
             jsonParam.cityid = $(this).data('cityid');
-
 
             cityApi.changeCity(jsonParam);
         };

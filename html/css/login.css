@@ -3,40 +3,55 @@
 /* login */
 .login-list.mod-paddingleft-list,
 .wallet-list.mod-paddingleft-list {
-	padding-left: 10px;
+    padding-left: 10px;
 }
 
 .login-list .mod-label {
-	width: 70px;
-	white-space: nowrap;
+    width: 70px;
+    white-space: nowrap;
 }
 
 .verification {
-	width: 34%;
-	max-width: 110px;
-	margin: -5px 10px -5px 0;
+    width: 34%;
+    max-width: 110px;
+    margin: -5px 10px -5px 0;
 }
 
 .login-list .input,
 .wallet-list .input {
-	height: 30px;
+    height: 30px;
 }
 
 .login-protocol-hint {
-	display: inline-block;
-	margin-left: 5px;
+    display: inline-block;
+    margin-left: 5px;
 }
 
 .login-protocol-box .checkbox {
-	margin-top: -4px;
+    margin-top: -4px;
 }
 
 .login-protocol-box {
-	font-size: 12px;
-	font-size: 1rem;
+    font-size: 12px;
+    font-size: 1rem;
 }
 
 .login-list li {
-	font-size: 14px;
-	font-size: 1.17rem;
+    font-size: 14px;
+    font-size: 1.17rem;
+}
+
+.login-yzm,
+.login-yzm img {
+    width: 150px;
+    height: 45px;
+}
+
+.login-yzm img {
+    border: 1px solid #bfbfbf;
+}
+
+.login-yzm-change {
+    font-size: 12px;
+    color: #1069c9;
 }

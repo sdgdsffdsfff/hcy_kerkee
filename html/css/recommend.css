@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+/* recommend */
+.recommend-wrap {
+    min-height: 100%;
+    background: #e6e6e6;
+}
+
+.recommend-get-tit {
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-size: 1.33rem;
+}
+
+.recommend-empty {
+    background: #fff;
+}
+
+.recommend-get-tit .f-hint1 {
+    margin: 0 2px;
+    vertical-align: middle;
+    font-size: 1.2em;
+}
+
+.recommend-list li {
+    font-weight: 500;
+    font-size: 16px;
+    font-size: 1.33rem;
+}
+
+.recommend-dtl-list time,
+.recommend-dtl-list span {
+    font-size: 13px;
+    font-size: 1.08rem;
+}
+
+.recommend-name {
+    margin-right: 10px;
+}
+
+.recommend-dtl-list .mod-list-r {
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    font-size: 1.17rem;
+}
+
+.recommend-dtl-count {
+    padding: 20px  10px;
+    font-weight: 500;
+    text-align: right;
+    font-size: 16px;
+    font-size: 1.33rem;
+}
+
+.recommend-listlink {
+    font-size: 12px;
+    color: #ea4335;
+}
+
+.recommend-userlist {
+    padding-right: 10px;
+    font-size: 13px;
+}
+
+.recommend-userlist h2 {
+    font-weight: 600;
+}
+
+.recommend-userlist time {
+    margin-left: 12px;
+}
+
+.recommend-summarylist {
+    color: #4b4b4b;
+}
+
+.recommend-summarylist li {
+    padding: 22px 12px;
+}
+
+.recommend-summarylist dl:first-child {
+    position: relative;
+}
+
+.recommend-summarylist dl:first-child:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 15px;
+    width: 1px;
+    height: 100%;
+    border-right: 1px dashed #e6e6e6;
+    -webkit-transform: scale3d(.5, 1, 1);
+    -ms-transform: scale3d(.5, 1, 1);
+    transform: scale3d(.5, 1, 1);
+}
+
+.recommend-summarylist dt {
+    font-size: 12px;
+    color: #707070;
+}
+
+.recommend-summarylist dd {
+    display: block;
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.recommend-index {
+    background: #fff;
+}
+
+.recommend-myinvite {
+    padding: 20px 12px;
+    line-height: 2;
+    text-align: center;
+    font-size: 15px;
+    color: #4b4b4b;
+    background-color: #e6e6e6;
+}
+
+.recommend-myinvite-link {
+    display: block;
+    font-size: 12px;
+    color: #34a853;
+}
+
+.recommend-nav {
+    margin: 22px -12px 0;
+    text-align: center;
+}
+
+.recommend-navlink {
+    display: inline-block;
+    padding: 0 18px;
+    margin: 0 10px;
+    line-height: 36px;
+    font-size: 15px;
+    background: #ffbf00;
+    color: #fff;
+    border-radius: 18px;
+}
+
+.recommend-navlink:active {
+    background-color: #ffa025;
+}
+
+.recommend-2cinvit {
+    padding: 22px 12px;
+}
+
+.recommend-2c,
+.recommend-2c img {
+    width: 186px;
+    height: 186px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.recommend-2c {
+    margin-bottom: 24px;
+}
+
+.invitebtn.btn {
+    background-color: #ea4335;
+}
+
+.icons-prom {
+    vertical-align: middle;
+    width: 62px;
+    height: 16px;
+    margin-right: 4px;
+    background-position: -60px 0;
+}

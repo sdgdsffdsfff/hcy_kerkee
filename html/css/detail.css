@@ -147,7 +147,8 @@ a.mod-flex .list-r {
 	height: 16px;
 	vertical-align: middle;
 	margin-right: 5px;
-	background-position: -100px -63px;
+	/*background-position: -100px -63px;*/
+	background-position: -60px -64px;
 }
 
 .tagbox {
@@ -181,7 +182,8 @@ a.mod-flex .list-r {
 
 .site-pointer {
 	margin-left: 5px;
-	color: #fbbc05;
+	/*color: #fbbc05;*/
+	color: #404040;
 }
 
 .complain-box {

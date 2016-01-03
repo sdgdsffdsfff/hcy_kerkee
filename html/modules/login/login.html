@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<title>登录</title>
+	<link rel="stylesheet" href="../../css/common.css">
+	<link rel="stylesheet" href="../../css/login.css">
+</head>
+<body>
+	<div class="pagewrap">
+		<article class="login-box mod-margin-box minh100">
+			<!--图片验证码-->
+			<script type="text/html" id="picCode">
+			<div class="mask active"></div>
+			<div class="pop active J_picCode pop-join-suc">
+			    <div class="pop-hint-txt">请输入验证码</div>
+
+			    <div class="pop-hint-txt1 mod-table">
+			      <div class="login-yzm mod-table-cell">
+			        <img src="{{host}}/api/v1/client/showCkCode?v={{ts}}" class="J_picBox">
+			      </div>
+			      <div class="login-yzm-change mod-table-cell J_change">看不清，换一个</div> 
+			    </div>
+			    <label class="pop-inputbox">
+			        <input type="text" class="input1 J_inputBox" placeholder="请输入验证码">
+			    </label>
+
+			    <!--clearfix-->
+			    <ul class="pop-btnbox mod-flex J_sureBtn">
+			      <li class="js-touch-state mod-cont">确定</li>
+			    </ul>
+			</div>
+			</script>
+		    	
+		    <h2 class="f-bigbase p10 center">
+		    	<p class="J_invite">
+		    		<br>
+					<script type="text/html" id="inviteUser">
+					{{if !!user_name}}
+		    		<em class="f-hint2">{{user_name}}</em>邀请你注册斗米兼职
+		    		{{else if !!mobile}}
+		    		<em class="f-hint2">{{mobile}}</em>邀请你注册斗米兼职
+		    		{{else if !!nick_name}}
+		    		<em class="f-hint2">{{nick_name}}</em>邀请你注册斗米兼职
+		    		{{/if}}
+		    		</script>
+		    	<p>
+		    	为了方便快速找到工作，请验证手机
+		    </h2>
+
+		      <ul class="mod-label-listwrap mod-paddingleft-list login-list">
+		        <li class="mod-li-arr js-touch-state">
+		          <label class="mod-label">手机号码</label>
+		          <div class="mod-cont login-input-box">
+		            <input type="tel" class="input phone" placeholder="请输入11位手机号码"></div>
+		        </li>
+		        <li class="mod-li-arr js-touch-state">
+		          <label class="mod-label">确认码</label>
+		          <div class="mod-cont login-input-box">
+		            <input type="tel" class="input code" placeholder="请输入确认码"></div>
+		          <div class="verification">
+		            <input type="button" class="s-btn js-touch-state unableBtn" disabled="true" value="获取确认码">
+		            <input type="button" class="s-btn js-touch-state ableBtn displayNone" value="获取确认码">
+		          </div>
+		        </li>
+		      </ul>
+
+		      <div class="login-protocol-box clearfix p10">
+		        <div class="fl">
+		          <label class="checkbox checkbox-label checkbox2 lableBtn active">
+		            <input type="checkbox" class="input-checkbox"></label>
+		          <span class="login-protocol-hint agreementDetail">
+		            我已阅读
+		            <a href="doumi://agreement" class="f-hint1">《斗米兼职注册协议》</a>
+		          </span>
+		        </div>
+		        <div class="fr makePhoneCall">
+		          <a href="javascript: void(0)" class="f-hint1">收不到验证码？</a>
+		        </div>
+		      </div>
+
+		      <div class="btnbox">
+		        <button type="button" class="btn surebtn js-touch-state">登录</button>
+		    </div>
+
+    	</article>
+	</div>
+	<!--removeIf(production)-->
+	<script type="text/javascript" src="../../vendor/core/SHFLoader.js" data-main="login.js"></script> 
+	<!--endRemoveIf(production)-->
+
+	<!-- include:js(login.js) -->
+</body>
+</html>

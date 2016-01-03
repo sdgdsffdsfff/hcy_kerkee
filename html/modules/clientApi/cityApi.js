@@ -64,6 +64,7 @@ define(["bridgeLib", "clientApi/baseApi"], function (bridgeLib, base) {
              */
 
             CityApi.__super__.constructor.apply(this, arguments);
+            this.constructorName = "CityApi";
         }
 
         CityApi.include({

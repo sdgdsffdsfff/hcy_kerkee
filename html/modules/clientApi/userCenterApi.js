@@ -256,7 +256,7 @@ define(["bridgeLib", "api/helper/util"], function (bridgeLib, util) {
              * @return {Object}
              * {data:信息}
              * @example
-             *        userCenter.applyList(function(data){
+             *        userCenter.userStatus(function(data){
              *          console.log(data);
              *      });
              * @since 1.0.0

@@ -34,7 +34,7 @@ define(["api/helper/util"], function (util) {
              * @param {Function} callBack 回调函数
              * @return {Object}
              * @example
-             *      listApi.getOptions(function(data){
+             *      indexApi.getOptions(function(data){
              *          console.log(data);
              *      });
              * @since 1.0.0
@@ -46,6 +46,39 @@ define(["api/helper/util"], function (util) {
                         "info": "getOptions"
                     },
                     callBack: callBack
+                });
+            },
+            
+            /**
+             * 通知客户端数据已加载完毕
+             * @method dataDownloadFinished
+             * @example
+             *        indexApi.dataDownloadFinished();
+             * @since 1.0.0
+             */
+            dataDownloadFinished: function(){
+                this.sendData({
+                    method: "dataDownloadFinished",
+                    param: {
+                        "info": "dataDownloadFinished"
+                    }
+                });
+            },
+
+            /**
+             * 调用客户端刷新
+             * @method refreshPage
+             * @example
+             *        indexApi.refreshPage();
+             * @since 1.0.0
+             */
+            refreshPage: function(type){
+                this.sendData({
+                    method: "refreshPage",
+                    param: {
+                        "info": "refreshPage",
+                        "type": type
+                    }
                 });
             }
 

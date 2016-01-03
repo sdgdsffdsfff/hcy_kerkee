@@ -10,14 +10,15 @@
     <meta name="format-detection" content="telephone=no" searchtype="map">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="white">
-    <title>兼职-首页</title>
+    <title>斗米兼职</title>
     <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/swiper.min.css">
     <link rel="stylesheet" href="../../css/list.css">
     <link rel="stylesheet" href="../../css/index.css">
 </head>
 <body>
 
-<section class="loading-pop active">
+<section class="loading-pop">
     <div class="spinner">
         <div class="spinny"></div>
     </div>
@@ -26,37 +27,27 @@
 <!-- wrap start -->
 <article class="mod-margin-box js-body">
 
-<!--slider-->
-<div class="slide" data-widget="com/mobile/widget/responsiveBanner.js" data-interval="3000">
-    <script type="text/html" id="focus-img-tpl">
-        <ul class="slide-list" data-role="list">
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <script type="text/html" id="focus-img-tpl">
             {{each focus_imgs as value i}}
-            <li class="slide-item" data-role="item">
-                <a class="js-slider-img" data-imgid="{{value.id}}" href="doumi://browser/{{value.url}}">
-                    <img src="{{value.image}}">
+            <div class="slide swiper-slide">
+                <a href="doumi://browser/{{value.url}}">
+                    <img class="js-slider-img" data-imgid="{{value.id}}" src="{{value.image}}">
                 </a>
-            </li>
+            </div>
             {{/each}}
-        </ul>
-        <div class="slide-indexs" id="slideIndexs"> 
-            {{each focus_imgs as value i}}
-                {{if i == 0}}
-                <i data-slide-to="{{i}}" class="active"></i>
-                {{else}}
-                <i data-slide-to="{{i}}"></i>
-                {{/if}}
-            {{/each}}
-        </div>
-    </script>
+        </script>
+    </div>
+    <div class="swiper-pagination"></div>
 </div>
-
-<!--slider end-->
 
 <nav class="navbox mod-margin-unit mod-flex  ani-nav">
 <script type="text/html" id="caselistwrap">
     {{each case_list as value i}}
         {{if value.id != 1}}
-            <a href="doumi://joblist?{{value.param}}" class="mrose mod-cont">
+            <a data-id="{{value.id}}" href="doumi://joblist?{{value.param}}" class="mrose mod-cont js-log-case">
                 
                 {{if value.id == 2}}
                 <i class="icon-fat"></i>
@@ -78,12 +69,12 @@
 <h2 class="titbox">
   <i class="icons-fond"></i>
   猜你喜欢
-  <a href="doumi://joblist?order=0" class="more">更多</a>
+  <a href="doumi://joblist?order=0" class="more js-log-topmore">更多</a>
 </h2>
 <ul class="mod-label-listwrap mod-padding-list">
     <script type="text/html" id="content-list-tpl">
         {{each post_list as value i}}
-            <li class="js-item">
+            <li class="js-item activeBackground">
                 <a href="doumi://jobdetail?job_id={{value.id}}" class="mod-flex">
                     <div class="mod-imgbox">
                         <img src="{{value.image}}" alt="logo" class="mod-img">
@@ -98,7 +89,9 @@
                         {{/if}}
                     </div>
                     <div class="mod-cont">
-                        <h3 class="list-tit"> <i class="tag-hot">{{if value.ad_types == 1}}热{{/if}}</i>
+                        <h3 class="list-tit">
+                        {{if value.ad_types == 1}}<i class="tag-hot">热</i>{{/if}}
+                        {{if value.has_subsidy==1}}<i class="tag-recommend reward">奖</i>{{/if}}
                         {{value.title}}
                         </h3>
 
@@ -110,17 +103,20 @@
                         <!--addr-->
 
                         <div class="taglist">
-                        <i class="icons-prom"></i>
                             {{each value.post_tags as tagval}}
+                            {{if tagval=='斗米直付' || tagval=='斗米担保'}}
+                            <i class="icons-prom"></i>
+                            {{else}}
                             <i class="tag-c">{{tagval}}</i>
+                            {{/if}}
                             {{/each}}
                         </div>
                         <!--tags-->
 
                         <div class="list-r">
-                        <i class="salary"><em class="price">{{value.salary}}</em>
+                        <i class="salary"><em class="price">{{value.salary}}元</em>
                         /{{value.salary_type_str}}</i> 
-                        <time class="date">{{value.working_hours}}</time>
+                        <time class="date">{{value.date_start_str}}~{{value.date_end_str}}</time>
                         </div>
                     </div>
                 </a>
@@ -128,7 +124,7 @@
         {{/each}}
     </script>
 </ul>
-<a href="doumi://joblist?order=0" class="list-finished  btm-more">查看更多职位</a>
+<a href="doumi://joblist?order=0" class="list-finished btm-more js-log-btmmore">查看更多职位</a>
 </section>
 
 </article>

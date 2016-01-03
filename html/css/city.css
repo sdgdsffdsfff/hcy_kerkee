@@ -401,3 +401,9 @@
 .category-child a:active {
     background-color: #b4bac0;
 }
+.js-body{
+    display: none;
+}
+.pop-btnbox a{
+    color: #fbbc05;
+}
